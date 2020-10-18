@@ -7,8 +7,10 @@ import net.gopine.events.impl.player.input.EventKeyboardKeyPressed;
 import net.gopine.events.impl.player.input.EventKeyboardKeyReleased;
 import net.gopine.events.impl.player.input.EventMouseLeftClick;
 import net.gopine.events.impl.player.input.EventMouseRightClick;
+import net.gopine.events.impl.world.EventWorldJoin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.world.WorldSettings;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.spongepowered.asm.mixin.Mixin;
@@ -135,6 +137,21 @@ public class MinecraftMixin {
     @Inject(method = "displayGuiScreen", at = @At("HEAD"))
     private void displayGuiScreen(GuiScreen guiScreenIn, CallbackInfo ci) {
         new EventGuiSwitch(guiScreenIn).call();
+    }
+    
+    /**
+     * Calls the following events:
+     * {@link EventWorldJoin}
+     * @param folderName name of the world folder
+     * @param worldName name of the world
+     * @param worldSettingsIn unused/not needed yet
+     * @param ci unused
+     * @author Nebula | Nebula#9998
+     * @since b0.1
+     */
+    @Inject(method = "launchIntegratedServer", at = @At("HEAD"))
+    private void launchIntegratedServer(String folderName, String worldName, WorldSettings worldSettingsIn, CallbackInfo callbackInfo) {
+        new EventWorldJoin(folderName, worldName).call();
     }
 
 }
