@@ -7,6 +7,7 @@ import net.gopine.events.impl.player.input.EventKeyboardKeyPressed;
 import net.gopine.events.impl.player.input.EventKeyboardKeyReleased;
 import net.gopine.events.impl.player.input.EventMouseLeftClick;
 import net.gopine.events.impl.player.input.EventMouseRightClick;
+import net.gopine.events.impl.world.EventWorldJoin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.world.WorldSettings;
