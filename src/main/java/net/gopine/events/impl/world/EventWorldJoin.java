@@ -13,8 +13,8 @@ public class EventWorldJoin extends Event {
   	public final String worldName;
 
   	public EventWorldJoin(String folderName, String worldName) {
-    	this.folderName = folderName;
-    	this.worldName = worldName;
+    		this.folderName = folderName;
+    		this.worldName = worldName;
   	}
 
 }
