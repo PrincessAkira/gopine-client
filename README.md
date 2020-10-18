@@ -1,20 +1,40 @@
 # Gopine Client
 ## Features
 ### Mods
-- 1.7 Animations
-- ToggleSprint/Sneak
-- Minimap (NO PLAYER DISPLAY)
-- AutoText
-- DiscordRPC
-- Built-in Screen Recorder
-- Reach Display Mod
-- Direction HUD
-- DiscordRPC
-- Time Changer
-- Particle Multiplier
+- Ping display
+- Potion effect display
+- CPS LMB + RMB
 - Item Physics
-- LMB + RMB CPS Mod
-- Potion Effect Display
+- Armour HUD
+- Particle Multiplier
+- Time Changer
+- Perspective Mod
+- 1.7 Animations
+- Togglesprint + Togglesneak
+- Minimap Mod **(NO PLAYER DISPLAY)**
+- Direction HUD
+- AutoText
+- Resource Pack Organizer
+- Reach Display Mod
+- Basilicous' Screen Recorder Mod
+- DiscordRPC
+- SkyBlockAddons
+- NotEnoughUpdates
+- Skyblockatia
+- Levelhead
+- AutoGG
+- AutoTip
+- AutoWho
+- Custom Scoreboard
+- Custom Bossbar
+- Compact Chat
+- Motion Blur
+- Nickhider
+- Oofmod
+- TNT Timer
+- Scrollable Tooltips
+- Block Overlay
+- Enchant Glint Colourizer
 ### KeyBinds
 - DropStack KeyBind
 - GUI/HUD Editor GUI KeyBind

@@ -1,6 +1,7 @@
 package net.gopine.mixins.gui;
 
 import net.gopine.assets.gui.GopineButtonRound;
+import net.gopine.util.GopineRPC;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.GlStateManager;
@@ -110,6 +111,13 @@ public class GuiMainMenuMixin extends GuiScreen {
         GlStateManager.enableAlpha();
         int i = 274;
 
+        if(GopineRPC.isConnected) {
+            String discordRPCSuccesful = "Succesfully connected to DiscordRPC";
+            this.drawString(this.fontRendererObj, discordRPCSuccesful, this.width - this.fontRendererObj.getStringWidth(discordRPCSuccesful) - 2, 2, -1);
+        } else {
+            String discordRPCFailed = "Not connected to DiscordRPC";
+            this.drawString(this.fontRendererObj, discordRPCFailed, this.width - this.fontRendererObj.getStringWidth(discordRPCFailed) - 2, 2, -1);
+        }
         String clientNameAndVer = "Gopine Client 1.8.9";
         this.drawString(this.fontRendererObj, clientNameAndVer, 2, this.height - 10, -1);
         String copyright = "Copyright Mojang AB. Do not distribute!";

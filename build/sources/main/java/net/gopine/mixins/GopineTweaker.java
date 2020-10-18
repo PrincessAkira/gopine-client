@@ -1,6 +1,3 @@
-/**
- * Credits to Apollo Client for providing much of the source code used in this file.
- */
 package net.gopine.mixins;
 
 import net.minecraft.launchwrapper.ITweaker;
@@ -21,9 +18,9 @@ public class GopineTweaker implements ITweaker {
     public void acceptOptions(List<String> args, File gameDir, File assetsDir, String profile) {
         this.launchArguments.addAll(args);
 
-        if(!args.contains("--version") && profile != null) {
-            launchArguments.add("--version");
-            launchArguments.add(profile);
+        if(!args.contains("--gameDir") && gameDir != null) {
+            launchArguments.add("--gameDir");
+            launchArguments.add(gameDir.getAbsolutePath());
         }
 
         if(!args.contains("--assetDir") && assetsDir != null) {
@@ -31,9 +28,9 @@ public class GopineTweaker implements ITweaker {
             launchArguments.add(assetsDir.getAbsolutePath());
         }
 
-        if(!args.contains("--gameDir") && gameDir != null) {
-            launchArguments.add("--gameDir");
-            launchArguments.add(gameDir.getAbsolutePath());
+        if(!args.contains("--version") && profile != null) {
+            launchArguments.add("--version");
+            launchArguments.add(profile);
         }
 
     }
@@ -45,7 +42,9 @@ public class GopineTweaker implements ITweaker {
         MixinEnvironment env = MixinEnvironment.getDefaultEnvironment();
         Mixins.addConfiguration("mixins.gopine.json");
 
-        if (env.getObfuscationContext() == null) { env.setObfuscationContext("notch"); }
+        if (env.getObfuscationContext() == null) {
+            env.setObfuscationContext("searge");
+        }
 
         env.setSide(MixinEnvironment.Side.CLIENT);
     }

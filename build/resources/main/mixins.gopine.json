@@ -2,7 +2,7 @@
   "required": true,
   "compatibilityLevel": "JAVA_8",
   "package": "net.gopine.mixins",
-  "refmap": "mixins.apollo.json",
+  "refmap": "mixins.gopine.refmap.json",
   "verbose": true,
   "mixins": [
     "client.MinecraftMixin",

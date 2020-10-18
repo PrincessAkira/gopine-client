@@ -1,16 +1,13 @@
 package net.gopine;
 
 import net.gopine.events.EventSubscriber;
-import net.gopine.events.impl.client.EventTick;
 import net.gopine.events.impl.gui.EventGuiSwitch;
-import net.gopine.events.impl.player.EventAttackEntity;
-import net.gopine.events.impl.player.EventKillEntity;
 import net.gopine.events.manager.EventManager;
+import net.gopine.https.HttpsPost;
 import net.gopine.settings.SettingManager;
 import net.gopine.util.Logger;
 import net.gopine.util.GopineRPC;
 import net.gopine.util.Utils;
-import net.minecraft.entity.passive.EntitySheep;
 
 /**
  * The main class of the client. Where all initialization takes place.
@@ -74,7 +71,11 @@ public class GopineClient {
 
     @EventSubscriber
     public void onGuiSwitch(EventGuiSwitch e) {
-        new Utils().checkForDiscordRPCUpdateAvailability(this.getDiscordRPC(), e.screen);
+        try {
+            new Utils().checkForDiscordRPCUpdateAvailability(this.getDiscordRPC(), e.screen);
+        } catch(Exception ignored) {
+
+        }
     }
 
 }

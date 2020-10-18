@@ -18,6 +18,11 @@ public class GopineRPC {
     RichPresence.Builder builder = new RichPresence.Builder();
     IPCClient client = new IPCClient(766300045918076938L);
 
+    public static boolean isConnected = false;
+    public void setConnected(boolean connected) {
+        isConnected = connected;
+    }
+
     /**
      * @author Hot Tutorials | Hot Tutorials#8262
      * @since b0.1
@@ -35,12 +40,23 @@ public class GopineRPC {
         });
         try {
             client.connect();
+            builder.setStartTimestamp(OffsetDateTime.now());
             client.sendRichPresence(builder.build());
             Logger.info("Connected to RPC Client!");
-        } catch (NoDiscordClientException e) {
-            e.printStackTrace();
-            Logger.error("Couldn't connect to RPC Client: " + e);
+            this.setConnected(true);
+        } catch (Exception ignored) {
+            this.setConnected(false);
         }
+    }
+
+    /**
+     * @param firstLine is the firstLine
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b0.1
+     */
+    public void setPresence(String firstLine) {
+        builder.setDetails(firstLine);
+        client.sendRichPresence(builder.build());
     }
 
     /**
@@ -51,8 +67,7 @@ public class GopineRPC {
      */
     public void setPresence(String firstLine, String secondLine) {
         builder.setDetails(firstLine)
-                .setState(secondLine)
-                .setStartTimestamp(OffsetDateTime.now());
+                .setState(secondLine);
         client.sendRichPresence(builder.build());
     }
 
@@ -63,12 +78,10 @@ public class GopineRPC {
      * @author Hot Tutorials | Hot Tutorials#8262
      * @since b0.1
      */
-
     public void setPresence(String firstLine, String secondLine, String largeImage) {
         builder.setDetails(firstLine)
                 .setState(secondLine)
-                .setLargeImage(largeImage)
-                .setStartTimestamp(OffsetDateTime.now());
+                .setLargeImage(largeImage);
         client.sendRichPresence(builder.build());
     }
 
@@ -85,8 +98,7 @@ public class GopineRPC {
         builder.setDetails(firstLine)
                 .setState(secondLine)
                 .setLargeImage(largeImage)
-                .setSmallImage(smallImage)
-                .setStartTimestamp(OffsetDateTime.now());
+                .setSmallImage(smallImage);
         client.sendRichPresence(builder.build());
     }
 

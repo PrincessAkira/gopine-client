@@ -9,6 +9,7 @@ public class Utils {
         Minecraft mc = Minecraft.getMinecraft();
         if(currentScreen instanceof GuiMainMenu)
             discordRPC.setPresence("Main Menu", "In the menus", "gopinelarge");
+            //GopineRPC.
         else if(currentScreen instanceof GuiMultiplayer)
             discordRPC.setPresence("Multiplayer Menu", "In the menus", "gopinelarge");
         else if(currentScreen instanceof GuiOptions)

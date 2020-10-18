@@ -4,7 +4,7 @@ bin
 .metadata
 .classpath
 .project
-run
+gamedir
 out
 *.ipr
 *.iws
@@ -13,5 +13,4 @@ out
 *.DS_Store
 build
 .gradle
-run
 eclipse
