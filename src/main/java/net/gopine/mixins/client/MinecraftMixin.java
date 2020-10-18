@@ -136,5 +136,20 @@ public class MinecraftMixin {
     private void displayGuiScreen(GuiScreen guiScreenIn, CallbackInfo ci) {
         new EventGuiSwitch(guiScreenIn).call();
     }
+    
+    /**
+     * Calls the following events:
+     * {@link EventWorldJoin}
+     * @param folderName name of the world folder
+     * @param worldName name of the world
+     * @param worldSettingsIn unused/not needed
+     * @param ci unused
+     * @author Nebula | Nebula#9998
+     * @since b0.1
+     */
+    @Inject(method = "launchIntegratedServer", at = @At("HEAD"))
+    private void launchIntegratedServer(String folderName, String worldName, WorldSettings worldSettingsIn, CallbackInfo callbackInfo) {
+        new EventWorldJoin(folderName, worldName).post();
+    }
 
 }
