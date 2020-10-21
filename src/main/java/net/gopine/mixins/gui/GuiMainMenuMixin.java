@@ -1,7 +1,6 @@
 package net.gopine.mixins.gui;
 
 import net.gopine.assets.gui.GopineButtonRound;
-import net.gopine.util.GopineRPC;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.GlStateManager;
@@ -9,11 +8,15 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
+import org.lwjgl.util.vector.Vector2f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 import java.awt.*;
+
+import static java.lang.Math.sin;
 
 /**
  * GuiMainMenu mixin used to completely rewrite the main menu GUI of the game.
@@ -40,6 +43,7 @@ public class GuiMainMenuMixin extends GuiScreen {
     private int field_92021_u;
     private int field_92020_v;
     private int field_92019_w;
+    private int initalTime;
 
     /**
      * Fixed the {@link GuiMainMenu} initGui method.
@@ -48,6 +52,7 @@ public class GuiMainMenuMixin extends GuiScreen {
      */
     @Overwrite
     public void initGui() {
+        initalTime = (int) Minecraft.getSystemTime();
         this.openGLWarning2 = field_96138_a;
         this.openGLWarning1 = "";
         if (!GLContext.getCapabilities().OpenGL20 && !OpenGlHelper.areShadersSupported())
@@ -91,15 +96,30 @@ public class GuiMainMenuMixin extends GuiScreen {
      * @author MatthewTGM | MatthewTGM#4058
      * @since b1.0
      */
-    private void renderCustomStaticBackground(ResourceLocation resourceLocation) {
+    private void renderCustomStaticBackground(ResourceLocation resourceLocation, float pt) {
         Minecraft.getMinecraft().getTextureManager().bindTexture(resourceLocation);
         Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, this.width, this.height, this.width, this.height);
     }
 
     /**
+     * Used to draw and render the custom logo on the main menu.
+     * @author Basilicous | Basilicous#9999
+     * @since b1.0
+     */
+    private void renderCustomStaticLogo(ResourceLocation resourceLocation) {
+        Minecraft.getMinecraft().getTextureManager().bindTexture(resourceLocation);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR_MIPMAP_LINEAR);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
+        Color borderColor = new Color(255, 255, 255);
+        GlStateManager.color(borderColor.getRed() / 255, borderColor.getGreen() / 255, borderColor.getBlue() / 255);
+        Gui.drawModalRectWithCustomSizedTexture(this.width / 2 - 36, this.height / 4 - 36, 0, 0, 68, 68, 68, 68);
+        Gui.drawModalRectWithCustomSizedTexture(this.width / 2 - 32, this.height / 4 - 32, 0, 0, 64, 64, 64, 64);
+    }
+
+    /**
      * Overwrites the drawScreen method in the GuiMainMenu class. This is used to render custom Strings, images, etc.
      * @param mouseX the X position of the mouse
-     * @param mouseY the Y position of the mouse
+     * @param mouseY the Y position of the mouse0
      * @param partialTicks the partialTicks
      * @author MatthewTGM | MatthewTGM#4058
      * @since b1.0
@@ -107,23 +127,17 @@ public class GuiMainMenuMixin extends GuiScreen {
     @Overwrite
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         GlStateManager.disableAlpha();
-        this.renderCustomStaticBackground(new ResourceLocation("gui/guimainmenu/background.png"));
+        this.renderCustomStaticBackground(new ResourceLocation("gui/guimainmenu/background.png"), partialTicks);
         GlStateManager.enableAlpha();
+        this.renderCustomStaticLogo(new ResourceLocation("gui/guimainmenu/logoCircle.png"));
         int i = 274;
 
-        if(GopineRPC.isConnected) {
-            String discordRPCSuccesful = "Succesfully connected to DiscordRPC";
-            this.drawString(this.fontRendererObj, discordRPCSuccesful, this.width - this.fontRendererObj.getStringWidth(discordRPCSuccesful) - 2, 2, -1);
-        } else {
-            String discordRPCFailed = "Not connected to DiscordRPC";
-            this.drawString(this.fontRendererObj, discordRPCFailed, this.width - this.fontRendererObj.getStringWidth(discordRPCFailed) - 2, 2, -1);
-        }
         String clientNameAndVer = "Gopine Client 1.8.9";
         this.drawString(this.fontRendererObj, clientNameAndVer, 2, this.height - 10, -1);
         String copyright = "Copyright Mojang AB. Do not distribute!";
         String notAffiliated = "Gopine Client is not affiliated with Mojang AB";
-        this.drawString(this.fontRendererObj, copyright, this.width - this.fontRendererObj.getStringWidth(copyright) - 2, this.height - 20, -1);
-        this.drawString(this.fontRendererObj, notAffiliated, this.width - this.fontRendererObj.getStringWidth(notAffiliated) - 2, this.height - 10, -1);
+        this.drawString(this.fontRendererObj, copyright, this.width - this.fontRendererObj.getStringWidth(copyright) - 2, this.height - 10, -1);
+        this.drawString(this.fontRendererObj, notAffiliated, this.width - this.fontRendererObj.getStringWidth(notAffiliated) - 2, this.height - 20, -1);
 
         if (this.openGLWarning1 != null && this.openGLWarning1.length() > 0)
         {
@@ -134,5 +148,4 @@ public class GuiMainMenuMixin extends GuiScreen {
 
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
-
 }
