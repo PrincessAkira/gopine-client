@@ -12,7 +12,8 @@ public class RessourceLoader {
 
   /**
    * To load pngs or any other Images easily in the resources Folder
-   * - Yukii
+   * @author Yukii | Azariel#1337
+   * @since b0.1
    */
 
 
