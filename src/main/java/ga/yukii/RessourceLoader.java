@@ -9,6 +9,13 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class RessourceLoader {
+
+  /**
+   * To load pngs or any other Images easily in the resources Folder
+   * - Yukii
+   */
+
+
   private final static String BUILD_ASSET_DIR_PATH = "src/main/resources/";
   private final static String JAR_ASSET_DIR_PATH = "/";
 
