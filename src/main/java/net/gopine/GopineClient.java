@@ -27,7 +27,7 @@ public class GopineClient {
     }
     private static SettingManager settingManager = new SettingManager();
 
-    public final String CLIENT_NAME = "Gopine Client", CLIENT_VER = "b0.1", BRANCH_NAME = "BETA";
+    public static final String CLIENT_NAME = "Gopine Client", CLIENT_VER = "b0.1", BRANCH_NAME = "BETA";
 
     private final GopineRPC GOPINE_RPC = new GopineRPC();
     /**

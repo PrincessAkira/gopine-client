@@ -7,16 +7,28 @@ import net.gopine.events.impl.player.input.EventKeyboardKeyPressed;
 import net.gopine.events.impl.player.input.EventKeyboardKeyReleased;
 import net.gopine.events.impl.player.input.EventMouseLeftClick;
 import net.gopine.events.impl.player.input.EventMouseRightClick;
+import ga.yukii.RessourceLoader;
 import net.gopine.events.impl.world.EventWorldJoin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.util.Util;
 import net.minecraft.world.WorldSettings;
+import org.apache.commons.io.IOUtils;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.util.Arrays;
+
+
 
 /**
  * Minecraft mixin class used to add client initialization features and events.
@@ -32,9 +44,60 @@ public class MinecraftMixin {
      * @author MatthewTGM | MatthewTGM#4058
      * @since b0.1
      */
+
     @Inject(method = "startGame", at = @At("HEAD"))
     private void preInit(CallbackInfo ci) {
         GopineClient.getInstance().preInit();
+    }
+
+
+    private ByteBuffer readImageToBuffer(InputStream imageStream) throws IOException {
+        BufferedImage bufferedimage = ImageIO.read(imageStream);
+        int[] aint = bufferedimage.getRGB(0, 0, bufferedimage.getWidth(), bufferedimage.getHeight(), (int[])null, 0, bufferedimage.getWidth());
+        ByteBuffer bytebuffer = ByteBuffer.allocate(4 * aint.length);
+        Arrays.stream(aint).map(i -> i << 8 | i >> 24 & 255).forEach(bytebuffer::putInt);
+        bytebuffer.flip();
+        return bytebuffer;
+    }
+
+    /**
+     * Edits the Icon
+     *
+     * @param callbackInfo is unused
+     * @author Yukii | Azariel#1337
+     * @since b0.1
+     */
+
+    @Inject(method = "setWindowIcon", at = @At("RETURN"))
+    public void setWindowIcon(CallbackInfo callbackInfo) {
+
+        Util.EnumOS util$enumos = Util.getOSType();
+
+        if (util$enumos != Util.EnumOS.OSX)
+        {
+            InputStream inputstream = null;
+            InputStream inputstream1 = null;
+
+            try
+            {
+                inputstream = new RessourceLoader("icons/LogoCircle.png").newStream();
+                inputstream1 = new RessourceLoader("icons/LogoCircle.png").newStream();
+
+                if(inputstream == null) {
+                    throw new Error();
+                }
+
+                Display.setIcon(new ByteBuffer[] {this.readImageToBuffer(inputstream), this.readImageToBuffer(inputstream1)});
+            }
+            catch (IOException ignored)
+            {
+            }
+            finally
+            {
+                IOUtils.closeQuietly(inputstream);
+                IOUtils.closeQuietly(inputstream1);
+            }
+        }
     }
 
     /**
@@ -145,7 +208,7 @@ public class MinecraftMixin {
      * @param folderName name of the world folder
      * @param worldName name of the world
      * @param worldSettingsIn unused/not needed yet
-     * @param ci unused
+     * @param callbackInfo unused
      * @author Nebula | Nebula#9998
      * @since b0.1
      */
