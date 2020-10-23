@@ -8,12 +8,14 @@
     },
     "net/gopine/mixins/client/MinecraftMixin": {
       "dispatchKeypresses": "Lnet/minecraft/client/Minecraft;func_152348_aa()V",
+      "launchIntegratedServer": "Lnet/minecraft/client/Minecraft;func_71371_a(Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/world/WorldSettings;)V",
       "createDisplay": "Lnet/minecraft/client/Minecraft;func_175609_am()V",
       "startGame": "Lnet/minecraft/client/Minecraft;func_71384_a()V",
       "runTick": "Lnet/minecraft/client/Minecraft;func_71407_l()V",
       "shutdownMinecraftApplet": "Lnet/minecraft/client/Minecraft;func_71405_e()V",
       "clickMouse": "Lnet/minecraft/client/Minecraft;func_147116_af()V",
       "rightClickMouse": "Lnet/minecraft/client/Minecraft;func_147121_ag()V",
+      "setWindowIcon": "Lnet/minecraft/client/Minecraft;func_175594_ao()V",
       "displayGuiScreen": "Lnet/minecraft/client/Minecraft;func_147108_a(Lnet/minecraft/client/gui/GuiScreen;)V"
     }
   },
@@ -27,12 +29,14 @@
       },
       "net/gopine/mixins/client/MinecraftMixin": {
         "dispatchKeypresses": "Lave;Z()V",
+        "launchIntegratedServer": "Lave;a(Ljava/lang/String;Ljava/lang/String;Ladp;)V",
         "createDisplay": "Lave;ap()V",
         "startGame": "Lave;am()V",
         "runTick": "Lave;s()V",
         "shutdownMinecraftApplet": "Lave;g()V",
         "clickMouse": "Lave;aw()V",
         "rightClickMouse": "Lave;ax()V",
+        "setWindowIcon": "Lave;ar()V",
         "displayGuiScreen": "Lave;a(Laxu;)V"
       }
     },
@@ -45,12 +49,14 @@
       },
       "net/gopine/mixins/client/MinecraftMixin": {
         "dispatchKeypresses": "Lnet/minecraft/client/Minecraft;func_152348_aa()V",
+        "launchIntegratedServer": "Lnet/minecraft/client/Minecraft;func_71371_a(Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/world/WorldSettings;)V",
         "createDisplay": "Lnet/minecraft/client/Minecraft;func_175609_am()V",
         "startGame": "Lnet/minecraft/client/Minecraft;func_71384_a()V",
         "runTick": "Lnet/minecraft/client/Minecraft;func_71407_l()V",
         "shutdownMinecraftApplet": "Lnet/minecraft/client/Minecraft;func_71405_e()V",
         "clickMouse": "Lnet/minecraft/client/Minecraft;func_147116_af()V",
         "rightClickMouse": "Lnet/minecraft/client/Minecraft;func_147121_ag()V",
+        "setWindowIcon": "Lnet/minecraft/client/Minecraft;func_175594_ao()V",
         "displayGuiScreen": "Lnet/minecraft/client/Minecraft;func_147108_a(Lnet/minecraft/client/gui/GuiScreen;)V"
       }
     }

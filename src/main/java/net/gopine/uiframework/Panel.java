@@ -1,6 +1,5 @@
-package net.gopine.uiFramework;
+package net.gopine.uiframework;
 
-import net.gopine.util.Logger;
 import org.lwjgl.util.vector.Vector2f;
 
 /** This is a panel, that holds other objects

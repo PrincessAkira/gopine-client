@@ -5,8 +5,8 @@ import net.gopine.modules.ModuleCategory;
 
 public class TestModule extends Module {
 
-    public TestModule() {
-        super("Test", ModuleCategory.CHAT, true, false);
+    public TestModule(boolean toggled) {
+        super("Test", ModuleCategory.CHAT, toggled, false);
     }
 
     @Override

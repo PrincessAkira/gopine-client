@@ -1,4 +1,4 @@
-package net.gopine.uiFramework;
+package net.gopine.uiframework;
 
 /** A enum that contains each anchor
  * @author basilicous

@@ -1,4 +1,4 @@
-package net.gopine.uiFramework;
+package net.gopine.uiframework;
 
 import net.minecraft.client.Minecraft;
 import org.lwjgl.util.vector.Vector2f;

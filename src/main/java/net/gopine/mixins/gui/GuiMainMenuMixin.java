@@ -10,13 +10,10 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
-import org.lwjgl.util.vector.Vector2f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 import java.awt.*;
-
-import static java.lang.Math.sin;
 
 /**
  * GuiMainMenu mixin used to completely rewrite the main menu GUI of the game.
@@ -57,8 +54,8 @@ public class GuiMainMenuMixin extends GuiScreen {
         this.openGLWarning1 = "";
         if (!GLContext.getCapabilities().OpenGL20 && !OpenGlHelper.areShadersSupported())
         {
-            this.openGLWarning1 = I18n.format("title.oldgl1", new Object[0]);
-            this.openGLWarning2 = I18n.format("title.oldgl2", new Object[0]);
+            this.openGLWarning1 = I18n.format("title.oldgl1");
+            this.openGLWarning2 = I18n.format("title.oldgl2");
             this.openGLWarningLink = "https://help.mojang.com/customer/portal/articles/325948?ref=game";
         }
 
@@ -133,7 +130,8 @@ public class GuiMainMenuMixin extends GuiScreen {
         int i = 274;
 
         String clientNameAndVer = "Gopine Client 1.8.9";
-        this.drawString(this.fontRendererObj, clientNameAndVer, 2, this.height - 10, -1);
+        this.drawString(this.fontRendererObj, clientNameAndVer, 2, this.height - 10, 0xFFFFFFFF);
+        //GopineClient.getFontRenderer().drawString(clientNameAndVer, 2, this.height - 10, 0xFFFFFFFF);
         String copyright = "Copyright Mojang AB. Do not distribute!";
         String notAffiliated = "Gopine Client is not affiliated with Mojang AB";
         this.drawString(this.fontRendererObj, copyright, this.width - this.fontRendererObj.getStringWidth(copyright) - 2, this.height - 10, -1);

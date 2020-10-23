@@ -11,12 +11,16 @@ import ga.yukii.RessourceLoader;
 import net.gopine.events.impl.world.EventWorldJoin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.DefaultResourcePack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.world.WorldSettings;
 import org.apache.commons.io.IOUtils;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -37,6 +41,8 @@ import java.util.Arrays;
  */
 @Mixin(Minecraft.class)
 public class MinecraftMixin {
+
+    @Shadow @Final private DefaultResourcePack mcDefaultResourcePack;
 
     /**
      * Calls the {@link GopineClient} preInit method on game start.
@@ -80,8 +86,8 @@ public class MinecraftMixin {
 
             try
             {
-                inputstream = new RessourceLoader("icons/LogoCircle.png").newStream();
-                inputstream1 = new RessourceLoader("icons/LogoCircle.png").newStream();
+                inputstream = /*new RessourceLoader("icons/LogoCircle.png").newStream();*/this.mcDefaultResourcePack.getInputStream(new ResourceLocation("icons/LogoCircle.png"));
+                inputstream1 = /*new RessourceLoader("icons/LogoCircle.png").newStream();*/this.mcDefaultResourcePack.getInputStream(new ResourceLocation("icons/LogoCircle.png"));
 
                 if(inputstream == null) {
                     throw new Error();
