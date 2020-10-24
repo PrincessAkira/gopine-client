@@ -141,3 +141,7 @@ gradle-app.setting
 
 ### Gradle Patch ###
 **/build/
+.bin
+.lock
+build/tmp/makeStart/extracted/net/minecraftforge/gradle/GradleStartCommon.java
+build/tmp/makeStart/extracted/GradleStart.java
