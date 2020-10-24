@@ -9,6 +9,7 @@
     "entity.EntityPlayerMixin",
     "gui.GuiMainMenuMixin",
     "gui.GuiMixin",
-    "networking.NetHandlerPlayClientMixin"
+    "networking.NetHandlerPlayClientMixin",
+    "renderer.ItemRendererMixin"
   ]
 }
