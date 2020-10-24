@@ -44,6 +44,11 @@ public abstract class Setting {
         this.setupSetting();
     }
 
+    /**
+     * Sets up the initial setting
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
     public void setupSetting() {
         Logger.info("Initializing setting: " + this.name);
         try {
@@ -53,15 +58,30 @@ public abstract class Setting {
         }
     }
 
+    /**
+     * Called on setting setup
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
     public void onSettingSetup() {
 
     }
 
+    /**
+     * Called on setting enable
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
     public void onSettingEnable() {
         toggled = true;
         new EventSettingEnable(this).call();
     }
 
+    /**
+     * Called on setting disable
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
     public void onSettingDisable() {
         toggled = false;
         new EventSettingDisable(this).call();

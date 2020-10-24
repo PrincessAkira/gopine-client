@@ -85,6 +85,12 @@ public class GopineClient {
 
     }
 
+    /**
+     * Changes the DiscordRPC fields based on current client actions
+     * @param e event variable
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
     @EventSubscriber
     public void onGuiSwitch(EventGuiSwitch e) {
         try {

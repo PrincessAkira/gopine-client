@@ -11,9 +11,20 @@ public abstract class Module {
     public ModuleCategory category;
     public boolean toggled;
     public boolean hud;
+
+    /**
+     * @return an instance of the module toggled variable
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
     public boolean isToggled() {
         return toggled;
     }
+    /**
+     * @param toggled the state of the module toggle
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
     public void setToggled(boolean toggled) {
         this.toggled = toggled;
     }
@@ -34,6 +45,11 @@ public abstract class Module {
         this.setupModule();
     }
 
+    /**
+     * Sets up the initial module settings etc
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
     private void setupModule() {
         Logger.info("Initializing module: " + this.name);
         try {
@@ -43,15 +59,30 @@ public abstract class Module {
         }
     }
 
+    /**
+     * Called on module setup
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
     public void onModuleSetup() {
 
     }
 
+    /**
+     * Called on module enable
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
     public void onModuleEnable() {
         new EventModuleEnable(this).call();
         new EventModuleToggle(this, toggled).call();
     }
 
+    /**
+     * Called on module disable
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
     public void onModuleDisable() {
         new EventModuleDisable(this).call();
         new EventModuleToggle(this, toggled).call();

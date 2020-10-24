@@ -11,10 +11,20 @@ public class SettingManager {
 
     private List<Setting> settingsArray = new ArrayList<>();
 
+    /**
+     * @return an instance of the settingsArray variable
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
     public List<Setting> getSettingsArray() {
         return settingsArray;
     }
 
+    /**
+     * Initialized all settings in the client
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
     public void initSettings() {
         settingsArray.add(new SettingTextShadow(true));
         this.getSettingsArray().forEach(s -> {
@@ -27,6 +37,12 @@ public class SettingManager {
         Logger.info("Registered " + this.getSettingCount(false) + " settings | " + this.getSettingCount(true) + " are enabled!");
     }
 
+    /**
+     * @return the count of all modules currently in the client
+     * @param toggled whether to return only enabled modules or disabled
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
     public int getSettingCount(boolean toggled) {
         if(toggled) {
             return (int) settingsArray.stream().filter(Setting::isToggled).count();
