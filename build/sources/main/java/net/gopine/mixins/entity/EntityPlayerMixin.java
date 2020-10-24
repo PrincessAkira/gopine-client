@@ -4,10 +4,15 @@ import net.gopine.events.impl.player.EventAttackEntity;
 import net.gopine.events.impl.player.EventKillEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.DamageSource;
+import net.minecraft.entity.EntityLivingBase;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Random;
 
 /**
  * EntityPlayer mixin class used to add events.
@@ -16,6 +21,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  */
 @Mixin(EntityPlayer.class)
 public class EntityPlayerMixin {
+
+
+
 
     /**
      * Calls the following events:

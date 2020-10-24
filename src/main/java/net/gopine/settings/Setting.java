@@ -2,30 +2,68 @@ package net.gopine.settings;
 
 import net.gopine.events.impl.client.settings.EventSettingDisable;
 import net.gopine.events.impl.client.settings.EventSettingEnable;
+import net.gopine.util.Logger;
 
+/**
+ * Class used to make settings.
+ * @author MatthewTGM | MatthewTGM#4058
+ * @since b1.0
+ */
 public abstract class Setting {
 
     public final String name;
     public final SettingsType type;
-    public final boolean toggle;
+    public boolean toggled;
+    /**
+     * @return the toggled variable
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
+    public boolean isToggled() {
+        return toggled;
+    }
+    /**
+     * Sets the toggled variable to the parameter provided
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
+    public void setToggled(boolean toggled) {
+        this.toggled = toggled;
+    }
 
-    public Setting(String name, SettingsType type, boolean toggle) {
+    public Setting(String name, SettingsType type, boolean toggled) {
         this.name = name;
         this.type = type;
-        this.toggle = toggle;
+        this.toggled = toggled;
 
-        if(this.toggle) {
-            this.onEnable();
+        if(this.toggled) {
+            this.onSettingEnable();
         } else {
-            this.onDisable();
+            this.onSettingDisable();
+        }
+        this.setupSetting();
+    }
+
+    public void setupSetting() {
+        Logger.info("Initializing setting: " + this.name);
+        try {
+            this.onSettingSetup();
+        } catch(Exception e) {
+            e.printStackTrace();
         }
     }
 
-    public void onEnable() {
+    public void onSettingSetup() {
+
+    }
+
+    public void onSettingEnable() {
+        toggled = true;
         new EventSettingEnable(this).call();
     }
 
-    public void onDisable() {
+    public void onSettingDisable() {
+        toggled = false;
         new EventSettingDisable(this).call();
     }
 

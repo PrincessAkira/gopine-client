@@ -39,7 +39,7 @@ public abstract class Module {
         try {
             this.onModuleSetup();
         } catch(Exception e) {
-            Logger.error(e);
+            e.printStackTrace();
         }
     }
 

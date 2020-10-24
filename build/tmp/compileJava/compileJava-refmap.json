@@ -1,7 +1,14 @@
 {
   "mappings": {
+    "net/gopine/mixins/entity/EntityLivingBaseMixin": {
+      "performHurtAnimation": "Lnet/minecraft/entity/EntityLivingBase;func_70057_ab()V"
+    },
     "net/gopine/mixins/networking/NetHandlerPlayClientMixin": {
       "handleChat": "Lnet/minecraft/client/network/NetHandlerPlayClient;func_147251_a(Lnet/minecraft/network/play/server/S02PacketChat;)V"
+    },
+    "net/gopine/mixins/renderer/ItemRendererMixin": {
+      "renderFireInFirstPerson": "Lnet/minecraft/client/renderer/ItemRenderer;func_78442_d(F)V",
+      "renderWaterOverlayTexture": "Lnet/minecraft/client/renderer/ItemRenderer;func_78448_c(F)V"
     },
     "net/gopine/mixins/entity/EntityPlayerMixin": {
       "attackTargetEntityWithCurrentItem": "Lnet/minecraft/entity/player/EntityPlayer;func_71059_n(Lnet/minecraft/entity/Entity;)V"
@@ -21,8 +28,15 @@
   },
   "data": {
     "notch": {
+      "net/gopine/mixins/entity/EntityLivingBaseMixin": {
+        "performHurtAnimation": "Lpr;ar()V"
+      },
       "net/gopine/mixins/networking/NetHandlerPlayClientMixin": {
         "handleChat": "Lbcy;a(Lfy;)V"
+      },
+      "net/gopine/mixins/renderer/ItemRendererMixin": {
+        "renderFireInFirstPerson": "Lbfn;f(F)V",
+        "renderWaterOverlayTexture": "Lbfn;e(F)V"
       },
       "net/gopine/mixins/entity/EntityPlayerMixin": {
         "attackTargetEntityWithCurrentItem": "Lwn;f(Lpk;)V"
@@ -41,8 +55,15 @@
       }
     },
     "searge": {
+      "net/gopine/mixins/entity/EntityLivingBaseMixin": {
+        "performHurtAnimation": "Lnet/minecraft/entity/EntityLivingBase;func_70057_ab()V"
+      },
       "net/gopine/mixins/networking/NetHandlerPlayClientMixin": {
         "handleChat": "Lnet/minecraft/client/network/NetHandlerPlayClient;func_147251_a(Lnet/minecraft/network/play/server/S02PacketChat;)V"
+      },
+      "net/gopine/mixins/renderer/ItemRendererMixin": {
+        "renderFireInFirstPerson": "Lnet/minecraft/client/renderer/ItemRenderer;func_78442_d(F)V",
+        "renderWaterOverlayTexture": "Lnet/minecraft/client/renderer/ItemRenderer;func_78448_c(F)V"
       },
       "net/gopine/mixins/entity/EntityPlayerMixin": {
         "attackTargetEntityWithCurrentItem": "Lnet/minecraft/entity/player/EntityPlayer;func_71059_n(Lnet/minecraft/entity/Entity;)V"

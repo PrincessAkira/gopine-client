@@ -16,11 +16,22 @@ public class ModuleManager {
 
     public void initModules() {
         this.moduleArray.add(new TestModule(true));
-        Logger.info("Registered " + this.getModuleCount() + " modules");
+        this.getModuleArray().forEach(m -> {
+            if(m.isToggled()) {
+                m.onModuleEnable();
+            } else {
+                m.onModuleDisable();
+            }
+        });
+        Logger.info("Registered " + this.getModuleCount(false) + " modules | " + this.getModuleCount(true) + " are enabled!");
     }
 
-    public long getModuleCount() {
-        return this.moduleArray.stream().filter(Module::isToggled).count();
+    public int getModuleCount(boolean toggled) {
+        if(toggled) {
+            return (int) moduleArray.stream().filter(Module::isToggled).count();
+        } else {
+            return moduleArray.size();
+        }
     }
 
 }

@@ -18,24 +18,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(EntityLivingBase.class)
 public class EntityLivingBaseMixin {
 
-  @Shadow
-  private int maxHurtTime;
-  @Shadow
-  private int hurtTime;
-  @Shadow
-  private float attackedAtYaw;
+    @Shadow
+    private int maxHurtTime;
+    @Shadow
+    private int hurtTime;
+    @Shadow
+    private float attackedAtYaw;
 
-  /**
-   * Disables Hurtcam
-   * @param ci unused
-   * @author Yukii | Azariel#0004
-   * @since b0.1
-   */
-
-  @Inject(method = "performHurtAnimation", at = @At("RETURN"))
-  public void performHurtAnimation(CallbackInfo ci)
-  {
-    this.hurtTime = this.maxHurtTime = 0;
-    this.attackedAtYaw = 0.0F;
-  }
+    /**
+     * Disables Hurtcam
+     * @param ci unused
+     * @author Yukii | Azariel#0004
+     * @since b0.1
+     */
+    @Inject(method = "performHurtAnimation", at = @At("RETURN"))
+    public void performHurtAnimation(CallbackInfo ci)
+    {
+        this.hurtTime = this.maxHurtTime = 0;
+        this.attackedAtYaw = 0.0F;
+    }
 }

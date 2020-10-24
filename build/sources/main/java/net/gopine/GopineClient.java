@@ -1,5 +1,6 @@
 package net.gopine;
 
+import net.gopine.assets.GopineFontRenderer;
 import net.gopine.events.EventSubscriber;
 import net.gopine.events.impl.client.modules.EventModuleEnable;
 import net.gopine.events.impl.gui.EventGuiSwitch;
@@ -10,6 +11,9 @@ import net.gopine.settings.SettingManager;
 import net.gopine.util.Logger;
 import net.gopine.util.GopineRPC;
 import net.gopine.util.Utils;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.util.ResourceLocation;
 
 /**
  * The main class of the client. Where all initialization takes place.
@@ -33,7 +37,7 @@ public class GopineClient {
 
     private final GopineRPC GOPINE_RPC = new GopineRPC();
     private final ModuleManager MODULE_MANAGER = new ModuleManager();
-    //public static final GopineFontRenderer FONT_RENDERER = new GopineFontRenderer(new Font("Comic Sans MS", Font.PLAIN, 15), 0);
+    //public static final GopineFontRenderer FONT_RENDERER;
     /**
      * @return an instance of {@link GopineRPC}
      * @author Hot Tutorials | Hot Tutorials#8262
@@ -51,9 +55,6 @@ public class GopineClient {
      * @author MatthewTGM | MatthewTGM#4058
      * @since b0.1
      */
-    //public static GopineFontRenderer getFontRenderer() {
-        //return FONT_RENDERER;
-    //}
 
     /**
      * The client preInitialization method.
@@ -63,7 +64,7 @@ public class GopineClient {
     public void preInit() {
         Logger.info("Started Gopine Client PRE_INIT phase");
         EventManager.register(this);
-		this.getDiscordRPC().init();
+        this.getDiscordRPC().init();
         Logger.info("Finished Gopine Client PRE_INIT phase");
     }
 
@@ -75,7 +76,7 @@ public class GopineClient {
     public void init() {
         Logger.info("Started Gopine Client INIT phase");
         MODULE_MANAGER.initModules();
-        settingManager.handleSetting(this);
+        settingManager.initSettings();
         Logger.info("Finished Gopine Client INIT phase");
     }
 
