@@ -28,14 +28,12 @@ public class GopineRPC {
      * @since b0.1
      */
     public void init() {
-        Logger.info("Started DiscordRPC...");
         client.setListener(new IPCListener(){
             @Override
             public void onReady(IPCClient client)
             {
                 setPresence("Starting Client...", "Starting Client...", "gopinelarge");
                 client.sendRichPresence(builder.build());
-                Logger.info("Set DiscordRPC Presence...");
             }
         });
         try {
@@ -46,6 +44,11 @@ public class GopineRPC {
             this.setConnected(true);
         } catch (Exception ignored) {
             this.setConnected(false);
+        }
+        if(isConnected) {
+            Logger.info("Connected to GopineRPC");
+        } else {
+            Logger.info("Did NOT connect to GopineRPC");
         }
     }
 

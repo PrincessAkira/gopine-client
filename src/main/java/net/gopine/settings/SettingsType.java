@@ -3,7 +3,8 @@ package net.gopine.settings;
 public enum SettingsType {
 
     CHAT("CHAT"),
-    GUI("GUI");
+    GUI("GUI"),
+    PERFORMANCE("PERFORMANCE");
 
     public String type;
 

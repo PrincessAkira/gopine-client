@@ -12,15 +12,22 @@ import java.util.Iterator;
 
 public class PlayerUtils {
 
-    /*public Method getMethod(Class clazz, String methodName) throws NoSuchMethodException {
-        return clazz.getMethod(methodName);
-        Class superClass = clazz.getSuperclass();
-        if(superClass == null) {
-            return null;
+    public Method getMethod(Class clazz, String methodName, boolean fromSuperclazz) {
+        if(fromSuperclazz) {
+            Class superClass = clazz.getSuperclass();
+            if(superClass == null) {
+                return null;
+            } else {
+                return getMethod(superClass, methodName, false);
+            }
         } else {
-            return getMethod(superClass, methodName)
+            try {
+                return clazz.getMethod(methodName);
+            } catch(Exception e) {
+                return null;
+            }
         }
-    }*/
+    }
 
     /**
      * Adds layers to the player skin (Capes, wings, etc)
@@ -30,8 +37,8 @@ public class PlayerUtils {
 
         try {
 
-            this.getMethod(RendererLivingEntity.class, "addLayer").setAccessible(true);
-            this.getMethod(RendererLivingEntity.class, "addLayer").
+            this.getMethod(RendererLivingEntity.class, "addLayer", true).setAccessible(true);
+            this.getMethod(RendererLivingEntity.class, "addLayer", true)
 
             for (RenderPlayer render : new RenderManagerMixin().getSkinMap().values()) {
                 render.addLayer(layer);

@@ -1,19 +1,13 @@
 package net.gopine;
 
-import net.gopine.assets.GopineFontRenderer;
 import net.gopine.events.EventSubscriber;
-import net.gopine.events.impl.client.modules.EventModuleEnable;
 import net.gopine.events.impl.gui.EventGuiSwitch;
 import net.gopine.events.manager.EventManager;
 import net.gopine.modules.ModuleManager;
-import net.gopine.modules.impl.TestModule;
 import net.gopine.settings.SettingManager;
 import net.gopine.util.Logger;
 import net.gopine.util.GopineRPC;
 import net.gopine.util.Utils;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.util.ResourceLocation;
 
 /**
  * The main class of the client. Where all initialization takes place.
@@ -31,13 +25,12 @@ public class GopineClient {
     public static GopineClient getInstance() {
         return INSTANCE;
     }
-    private static final SettingManager settingManager = new SettingManager();
 
     public static final String CLIENT_NAME = "Gopine Client", CLIENT_VER = "b0.1", BRANCH_NAME = "BETA";
 
     private final GopineRPC GOPINE_RPC = new GopineRPC();
     private final ModuleManager MODULE_MANAGER = new ModuleManager();
-    //public static final GopineFontRenderer FONT_RENDERER;
+    private final SettingManager SETTING_MANAGER = new SettingManager();
     /**
      * @return an instance of {@link GopineRPC}
      * @author Hot Tutorials | Hot Tutorials#8262
@@ -51,10 +44,13 @@ public class GopineClient {
      */
     public final ModuleManager getModuleManager() { return MODULE_MANAGER; };
     /**
-     * @return an instance of {@link GopineFontRenderer}
+     * @return an instance of {@link SettingManager}
      * @author MatthewTGM | MatthewTGM#4058
-     * @since b0.1
+     * @since b1.0
      */
+    public SettingManager getSettingManager() {
+        return SETTING_MANAGER;
+    }
 
     /**
      * The client preInitialization method.
@@ -76,7 +72,7 @@ public class GopineClient {
     public void init() {
         Logger.info("Started Gopine Client INIT phase");
         MODULE_MANAGER.initModules();
-        settingManager.initSettings();
+        SETTING_MANAGER.initSettings();
         Logger.info("Finished Gopine Client INIT phase");
     }
 
@@ -89,20 +85,17 @@ public class GopineClient {
 
     }
 
+    /**
+     * Changes the DiscordRPC fields based on current client actions
+     * @param e event variable
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
     @EventSubscriber
     public void onGuiSwitch(EventGuiSwitch e) {
         try {
             new Utils().checkForDiscordRPCUpdateAvailability(this.getDiscordRPC(), e.screen);
         } catch(Exception ignored) {
-
-        }
-    }
-
-    @EventSubscriber
-    public void onModuleStart(EventModuleEnable e) {
-        Logger.info("Started " + e.module.name);
-        if(e.module instanceof TestModule) {
-            Logger.info(e.module.name + " was enabled!");
         }
     }
 

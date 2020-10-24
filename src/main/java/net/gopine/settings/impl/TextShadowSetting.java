@@ -3,15 +3,15 @@ package net.gopine.settings.impl;
 import net.gopine.settings.Setting;
 import net.gopine.settings.SettingsType;
 
-public class SettingTextShadow extends Setting {
+public class TextShadowSetting extends Setting {
 
     public static boolean textShadow;
     public static void setTextShadow(boolean textShadow) {
-        SettingTextShadow.textShadow = textShadow;
+        TextShadowSetting.textShadow = textShadow;
     }
 
-    public SettingTextShadow(boolean toggled) {
-        super("Text Shadow", SettingsType.GUI, toggled);
+    public TextShadowSetting(boolean toggled) {
+        super("Text Shadow", SettingsType.PERFORMANCE, toggled);
     }
 
     @Override

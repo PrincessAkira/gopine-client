@@ -1,7 +1,8 @@
 package net.gopine.settings;
 
-import net.gopine.GopineClient;
-import net.gopine.settings.impl.SettingTextShadow;
+import net.gopine.settings.impl.FireOverlaySetting;
+import net.gopine.settings.impl.TextShadowSetting;
+import net.gopine.settings.impl.WaterOverlaySetting;
 import net.gopine.util.Logger;
 
 import java.util.ArrayList;
@@ -26,7 +27,9 @@ public class SettingManager {
      * @since b1.0
      */
     public void initSettings() {
-        settingsArray.add(new SettingTextShadow(true));
+        settingsArray.add(new TextShadowSetting(true));
+        settingsArray.add(new WaterOverlaySetting(true));
+        settingsArray.add(new FireOverlaySetting(true));
         this.getSettingsArray().forEach(s -> {
             if(s.isToggled()) {
                 s.onSettingEnable();

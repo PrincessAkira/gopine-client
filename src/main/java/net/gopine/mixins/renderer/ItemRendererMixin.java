@@ -1,6 +1,7 @@
 package net.gopine.mixins.renderer;
 
-import net.gopine.modules.impl.OverlayToggleModule;
+import net.gopine.settings.impl.FireOverlaySetting;
+import net.gopine.settings.impl.WaterOverlaySetting;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -34,9 +35,8 @@ public class ItemRendererMixin {
 
   /**
    * Disables the rendering of the Fire Overlay and the Water overlay
-   *
    * @author Yukii | Azariel#0004 && Basilicous
-   * @since 0.1b
+   * @since b1.0
    */
   @Overwrite
   public void renderOverlays(float partialTicks) {
@@ -63,17 +63,18 @@ public class ItemRendererMixin {
       }
     }
 
-    // CHANGES ARE HERE
-    if (OverlayToggleModule.overlayToggled) {
       if (!this.mc.thePlayer.isSpectator()) {
         if (this.mc.thePlayer.isInsideOfMaterial(Material.water)) {
-          this.renderWaterOverlayTexture(partialTicks);
+            if(WaterOverlaySetting.shouldRender) {
+              this.renderWaterOverlayTexture(partialTicks);
+            }
         }
 
         if (this.mc.thePlayer.isBurning()) {
-          this.renderFireInFirstPerson(partialTicks);
+            if(FireOverlaySetting.shouldRender) {
+              this.renderFireInFirstPerson(partialTicks);
+            }
         }
-      }
     }
     GlStateManager.enableAlpha();
   }

@@ -12,7 +12,6 @@ import java.util.Map;
 @Mixin(RenderManager.class)
 public class RenderManagerMixin {
 
-
     @Shadow
     private Map<String, RenderPlayer> skinMap = Maps.<String, RenderPlayer>newHashMap();
     public Map<String, RenderPlayer> getSkinMap() {
