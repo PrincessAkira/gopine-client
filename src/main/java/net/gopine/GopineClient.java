@@ -52,7 +52,7 @@ public class GopineClient {
      * @since b0.1
      */
     //public static GopineFontRenderer getFontRenderer() {
-        //return FONT_RENDERER;
+    //return FONT_RENDERER;
     //}
 
     /**
@@ -63,7 +63,7 @@ public class GopineClient {
     public void preInit() {
         Logger.info("Started Gopine Client PRE_INIT phase");
         EventManager.register(this);
-		this.getDiscordRPC().init();
+        this.getDiscordRPC().init();
         Logger.info("Finished Gopine Client PRE_INIT phase");
     }
 

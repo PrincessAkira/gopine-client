@@ -38,6 +38,4 @@ public class EntityLivingBaseMixin {
     this.hurtTime = this.maxHurtTime = 0;
     this.attackedAtYaw = 0.0F;
   }
-
-
 }
