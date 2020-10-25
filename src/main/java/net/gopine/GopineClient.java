@@ -66,7 +66,7 @@ public class GopineClient {
         Logger.info("Started Gopine Client PRE_INIT phase");
         EventManager.register(this);
         this.getDiscordRPC().init();
-        SessionChanger.getInstance().setUser("matthewtgm120@gmail.com", "Smile66...");
+        //SessionChanger.getInstance().setUser("", "");
         Logger.info("Finished Gopine Client PRE_INIT phase");
     }
 
