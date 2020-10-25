@@ -2,7 +2,7 @@ package net.gopine.modules;
 
 public enum ModuleCategory {
 
-    CHAT("CHAT"), GUI("GUI"), RENDERING("RENDERING");
+    CHAT("CHAT"), GUI("GUI"), RENDERING("RENDERING"), GAMEPLAY("GAMEPLAY");
 
     String category;
 

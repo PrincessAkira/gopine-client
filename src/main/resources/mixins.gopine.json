@@ -7,8 +7,10 @@
   "mixins": [
     "client.MinecraftMixin",
     "entity.EntityPlayerMixin",
+    "entity.RenderTNTPrimedMixin",
     "gui.GuiMainMenuMixin",
     "gui.GuiMixin",
+    "gui.GuiNewChatMixin",
     "networking.NetHandlerPlayClientMixin",
     "renderer.ItemRendererMixin"
   ]

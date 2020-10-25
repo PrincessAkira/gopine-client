@@ -2,6 +2,9 @@ FD: net/gopine/mixins/client/MinecraftMixin/mcDefaultResourcePack net/gopine/mix
 FD: net/gopine/mixins/entity/EntityLivingBaseMixin/maxHurtTime net/gopine/mixins/entity/EntityLivingBaseMixin/field_70738_aO
 FD: net/gopine/mixins/entity/EntityLivingBaseMixin/hurtTime net/gopine/mixins/entity/EntityLivingBaseMixin/field_70737_aN
 FD: net/gopine/mixins/entity/EntityLivingBaseMixin/attackedAtYaw net/gopine/mixins/entity/EntityLivingBaseMixin/field_70739_aP
+FD: net/gopine/mixins/gui/GuiNewChatMixin/scrollPos net/gopine/mixins/gui/GuiNewChatMixin/field_146250_j
+FD: net/gopine/mixins/gui/GuiNewChatMixin/isScrolled net/gopine/mixins/gui/GuiNewChatMixin/field_146251_k
+FD: net/gopine/mixins/gui/GuiNewChatMixin/field_146253_i net/gopine/mixins/gui/GuiNewChatMixin/field_146253_i
 FD: net/gopine/mixins/renderer/ItemRendererMixin/mc net/gopine/mixins/renderer/ItemRendererMixin/field_78455_a
 FD: net/gopine/mixins/renderer/ItemRendererMixin/RES_UNDERWATER_OVERLAY net/gopine/mixins/renderer/ItemRendererMixin/field_110929_d
 FD: net/gopine/mixins/renderer/RenderManagerMixin/skinMap net/gopine/mixins/renderer/RenderManagerMixin/field_178636_l
@@ -9,6 +12,12 @@ MD: net/gopine/mixins/gui/GuiMainMenuMixin/initGui ()V net/gopine/mixins/gui/Gui
 MD: net/gopine/mixins/gui/GuiMainMenuMixin/drawScreen (IIF)V net/gopine/mixins/gui/GuiMainMenuMixin/func_73863_a (IIF)V
 MD: net/gopine/mixins/gui/GuiMixin/drawCenteredString (Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V net/gopine/mixins/gui/GuiMixin/func_73732_a (Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V
 MD: net/gopine/mixins/gui/GuiMixin/drawString (Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V net/gopine/mixins/gui/GuiMixin/func_73731_b (Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V
+MD: net/gopine/mixins/gui/GuiNewChatMixin/getLineCount ()I net/gopine/mixins/gui/GuiNewChatMixin/func_146232_i ()I
+MD: net/gopine/mixins/gui/GuiNewChatMixin/getChatHeight ()I net/gopine/mixins/gui/GuiNewChatMixin/func_146246_g ()I
+MD: net/gopine/mixins/gui/GuiNewChatMixin/getChatOpen ()Z net/gopine/mixins/gui/GuiNewChatMixin/func_146241_e ()Z
+MD: net/gopine/mixins/gui/GuiNewChatMixin/getChatScale ()F net/gopine/mixins/gui/GuiNewChatMixin/func_146244_h ()F
+MD: net/gopine/mixins/gui/GuiNewChatMixin/getChatWidth ()I net/gopine/mixins/gui/GuiNewChatMixin/func_146228_f ()I
+MD: net/gopine/mixins/gui/GuiNewChatMixin/drawChat (I)V net/gopine/mixins/gui/GuiNewChatMixin/func_146230_a (I)V
 MD: net/gopine/mixins/renderer/ItemRendererMixin/func_178108_a (FLnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V net/gopine/mixins/renderer/ItemRendererMixin/func_178108_a (FLnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
 MD: net/gopine/mixins/renderer/ItemRendererMixin/renderFireInFirstPerson (F)V net/gopine/mixins/renderer/ItemRendererMixin/func_78442_d (F)V
 MD: net/gopine/mixins/renderer/ItemRendererMixin/renderWaterOverlayTexture (F)V net/gopine/mixins/renderer/ItemRendererMixin/func_78448_c (F)V

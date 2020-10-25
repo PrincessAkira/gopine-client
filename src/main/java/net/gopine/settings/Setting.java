@@ -50,7 +50,7 @@ public abstract class Setting {
      * @since b1.0
      */
     public void setupSetting() {
-        Logger.info("Initializing setting: " + this.name);
+        Logger.SettingLogger.info("Initializing setting: " + this.name);
         try {
             this.onSettingSetup();
         } catch(Exception e) {

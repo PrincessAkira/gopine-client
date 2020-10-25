@@ -2,6 +2,9 @@ FD: net/gopine/mixins/client/MinecraftMixin/mcDefaultResourcePack net/gopine/mix
 FD: net/gopine/mixins/entity/EntityLivingBaseMixin/maxHurtTime net/gopine/mixins/entity/EntityLivingBaseMixin/av
 FD: net/gopine/mixins/entity/EntityLivingBaseMixin/hurtTime net/gopine/mixins/entity/EntityLivingBaseMixin/au
 FD: net/gopine/mixins/entity/EntityLivingBaseMixin/attackedAtYaw net/gopine/mixins/entity/EntityLivingBaseMixin/aw
+FD: net/gopine/mixins/gui/GuiNewChatMixin/scrollPos net/gopine/mixins/gui/GuiNewChatMixin/j
+FD: net/gopine/mixins/gui/GuiNewChatMixin/isScrolled net/gopine/mixins/gui/GuiNewChatMixin/k
+FD: net/gopine/mixins/gui/GuiNewChatMixin/field_146253_i net/gopine/mixins/gui/GuiNewChatMixin/i
 FD: net/gopine/mixins/renderer/ItemRendererMixin/mc net/gopine/mixins/renderer/ItemRendererMixin/c
 FD: net/gopine/mixins/renderer/ItemRendererMixin/RES_UNDERWATER_OVERLAY net/gopine/mixins/renderer/ItemRendererMixin/b
 FD: net/gopine/mixins/renderer/RenderManagerMixin/skinMap net/gopine/mixins/renderer/RenderManagerMixin/l
@@ -9,6 +12,12 @@ MD: net/gopine/mixins/gui/GuiMainMenuMixin/initGui ()V net/gopine/mixins/gui/Gui
 MD: net/gopine/mixins/gui/GuiMainMenuMixin/drawScreen (IIF)V net/gopine/mixins/gui/GuiMainMenuMixin/a (IIF)V
 MD: net/gopine/mixins/gui/GuiMixin/drawCenteredString (Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V net/gopine/mixins/gui/GuiMixin/a (Lavn;Ljava/lang/String;III)V
 MD: net/gopine/mixins/gui/GuiMixin/drawString (Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V net/gopine/mixins/gui/GuiMixin/c (Lavn;Ljava/lang/String;III)V
+MD: net/gopine/mixins/gui/GuiNewChatMixin/getLineCount ()I net/gopine/mixins/gui/GuiNewChatMixin/i ()I
+MD: net/gopine/mixins/gui/GuiNewChatMixin/getChatHeight ()I net/gopine/mixins/gui/GuiNewChatMixin/g ()I
+MD: net/gopine/mixins/gui/GuiNewChatMixin/getChatOpen ()Z net/gopine/mixins/gui/GuiNewChatMixin/e ()Z
+MD: net/gopine/mixins/gui/GuiNewChatMixin/getChatScale ()F net/gopine/mixins/gui/GuiNewChatMixin/h ()F
+MD: net/gopine/mixins/gui/GuiNewChatMixin/getChatWidth ()I net/gopine/mixins/gui/GuiNewChatMixin/f ()I
+MD: net/gopine/mixins/gui/GuiNewChatMixin/drawChat (I)V net/gopine/mixins/gui/GuiNewChatMixin/a (I)V
 MD: net/gopine/mixins/renderer/ItemRendererMixin/func_178108_a (FLnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V net/gopine/mixins/renderer/ItemRendererMixin/a (FLbmi;)V
 MD: net/gopine/mixins/renderer/ItemRendererMixin/renderFireInFirstPerson (F)V net/gopine/mixins/renderer/ItemRendererMixin/f (F)V
 MD: net/gopine/mixins/renderer/ItemRendererMixin/renderWaterOverlayTexture (F)V net/gopine/mixins/renderer/ItemRendererMixin/e (F)V

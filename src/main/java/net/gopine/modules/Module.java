@@ -37,21 +37,13 @@ public abstract class Module {
         this.setupModule();
     }
 
-    public Module(String name, ModuleCategory category, boolean hud) {
-        this.name = name;
-        this.category = category;
-        this.toggled = toggled;
-        this.hud = hud;
-        this.setupModule();
-    }
-
     /**
      * Sets up the initial module settings etc
      * @author MatthewTGM | MatthewTGM#4058
      * @since b1.0
      */
     private void setupModule() {
-        Logger.info("Initializing module: " + this.name);
+        Logger.ModLogger.info("Initializing module: " + this.name);
         try {
             this.onModuleSetup();
         } catch(Exception e) {

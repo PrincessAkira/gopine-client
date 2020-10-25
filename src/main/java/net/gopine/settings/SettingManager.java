@@ -1,5 +1,6 @@
 package net.gopine.settings;
 
+import net.gopine.settings.impl.ClearChatBackgroundSetting;
 import net.gopine.settings.impl.FireOverlaySetting;
 import net.gopine.settings.impl.TextShadowSetting;
 import net.gopine.settings.impl.WaterOverlaySetting;
@@ -28,6 +29,7 @@ public class SettingManager {
      */
     public void initSettings() {
         settingsArray.add(new TextShadowSetting(true));
+        settingsArray.add(new ClearChatBackgroundSetting(true));
         settingsArray.add(new WaterOverlaySetting(true));
         settingsArray.add(new FireOverlaySetting(true));
         this.getSettingsArray().forEach(s -> {
@@ -37,7 +39,20 @@ public class SettingManager {
                 s.onSettingDisable();
             }
         });
-        Logger.info("Registered " + this.getSettingCount(false) + " settings | " + this.getSettingCount(true) + " are enabled!");
+        Logger.SettingLogger.info("Registered " + this.getSettingCount(false) + " settings | " + this.getSettingCount(true) + " are enabled!");
+    }
+
+    /**
+     * Run a setting
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
+    public void runSetting(Setting setting) {
+        if(setting.isToggled()) {
+            setting.onSettingEnable();
+        } else {
+            setting.onSettingDisable();
+        }
     }
 
     /**

@@ -1,5 +1,8 @@
 {
   "mappings": {
+    "net/gopine/mixins/entity/RenderTNTPrimedMixin": {
+      "doRender": "Lnet/minecraft/client/renderer/entity/RenderTNTPrimed;func_76986_a(Lnet/minecraft/entity/item/EntityTNTPrimed;DDDFF)V"
+    },
     "net/gopine/mixins/entity/EntityLivingBaseMixin": {
       "performHurtAnimation": "Lnet/minecraft/entity/EntityLivingBase;func_70057_ab()V"
     },
@@ -24,6 +27,9 @@
   },
   "data": {
     "notch": {
+      "net/gopine/mixins/entity/RenderTNTPrimedMixin": {
+        "doRender": "Lbkf;a(Lvj;DDDFF)V"
+      },
       "net/gopine/mixins/entity/EntityLivingBaseMixin": {
         "performHurtAnimation": "Lpr;ar()V"
       },
@@ -47,6 +53,9 @@
       }
     },
     "searge": {
+      "net/gopine/mixins/entity/RenderTNTPrimedMixin": {
+        "doRender": "Lnet/minecraft/client/renderer/entity/RenderTNTPrimed;func_76986_a(Lnet/minecraft/entity/item/EntityTNTPrimed;DDDFF)V"
+      },
       "net/gopine/mixins/entity/EntityLivingBaseMixin": {
         "performHurtAnimation": "Lnet/minecraft/entity/EntityLivingBase;func_70057_ab()V"
       },

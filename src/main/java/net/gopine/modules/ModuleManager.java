@@ -1,5 +1,6 @@
 package net.gopine.modules;
 
+import net.gopine.modules.impl.TNTTimerModule;
 import net.gopine.modules.impl.TestModule;
 import net.gopine.util.Logger;
 
@@ -26,6 +27,7 @@ public class ModuleManager {
      */
     public void initModules() {
         this.moduleArray.add(new TestModule(true));
+        this.getModuleArray().add(new TNTTimerModule(true));
         this.getModuleArray().forEach(m -> {
             if(m.isToggled()) {
                 m.onModuleEnable();
@@ -33,7 +35,20 @@ public class ModuleManager {
                 m.onModuleDisable();
             }
         });
-        Logger.info("Registered " + this.getModuleCount(false) + " modules | " + this.getModuleCount(true) + " are enabled!");
+        Logger.ModLogger.info("Registered " + this.getModuleCount(false) + " modules | " + this.getModuleCount(true) + " are enabled!");
+    }
+
+    /**
+     * Runs a module
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
+    public void runModule(Module module) {
+        if(module.isToggled()) {
+            module.onModuleEnable();
+        } else {
+            module.onModuleDisable();
+        }
     }
 
     /**
