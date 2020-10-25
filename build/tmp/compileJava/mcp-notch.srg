@@ -8,6 +8,7 @@ FD: net/gopine/mixins/gui/GuiNewChatMixin/field_146253_i net/gopine/mixins/gui/G
 FD: net/gopine/mixins/renderer/ItemRendererMixin/mc net/gopine/mixins/renderer/ItemRendererMixin/c
 FD: net/gopine/mixins/renderer/ItemRendererMixin/RES_UNDERWATER_OVERLAY net/gopine/mixins/renderer/ItemRendererMixin/b
 FD: net/gopine/mixins/renderer/RenderManagerMixin/skinMap net/gopine/mixins/renderer/RenderManagerMixin/l
+MD: net/gopine/mixins/client/ClientBrandRetrieverMixin/getClientModName ()Ljava/lang/String; net/gopine/mixins/client/ClientBrandRetrieverMixin/getClientModName ()Ljava/lang/String;
 MD: net/gopine/mixins/gui/GuiMainMenuMixin/initGui ()V net/gopine/mixins/gui/GuiMainMenuMixin/b ()V
 MD: net/gopine/mixins/gui/GuiMainMenuMixin/drawScreen (IIF)V net/gopine/mixins/gui/GuiMainMenuMixin/a (IIF)V
 MD: net/gopine/mixins/gui/GuiMixin/drawCenteredString (Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V net/gopine/mixins/gui/GuiMixin/a (Lavn;Ljava/lang/String;III)V

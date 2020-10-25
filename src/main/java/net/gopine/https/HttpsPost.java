@@ -1,44 +1,64 @@
 package net.gopine.https;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
+import net.gopine.util.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
+import java.util.StringJoiner;
 
-@Deprecated
 public class HttpsPost {
 
-    public String URI;
+    public String URL;
 
-    public HttpsPost(String URI) {
-        this.URI = URI;
+    public HttpsPost(String URL) {
+        this.URL = URL;
     }
 
-    public HttpClient httpClient = HttpClients.createDefault();
-    public HttpPost httpPost = new HttpPost(URI);
-
-    public List<NameValuePair> parameters = new ArrayList<NameValuePair>();
-    public void addParameter(BasicNameValuePair basicNameValuePair) {
-        this.parameters.add(basicNameValuePair);
-    }
-
-    public HttpResponse response;
-    public HttpEntity entity = response.getEntity();
-
-
-    public HttpEntity getEntity() {
+    public URL url(String url) {
         try {
-            response = httpClient.execute(httpPost);
+            return new URL(url);
+        } catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    private URLConnection connection(URL url) {
+        try {
+            return url(URL).openConnection();
+        } catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public HttpsPost(String URL, String JSONContent, Map<String, String> params) {
+        this.URL = URL;
+        try {
+            HttpURLConnection http = (HttpURLConnection)connection(url(URL));
+            assert http != null;
+            http.setRequestMethod("POST");
+            http.setDoOutput(true);
+            StringJoiner sj = new StringJoiner("&");
+            for(Map.Entry<String, String> entry : params.entrySet()) {
+                sj.add(URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + URLEncoder.encode(entry.getValue(), "UTF-8"));
+            }
+            byte[] out = JSONContent.getBytes(StandardCharsets.UTF_8);
+            int length = out.length;
+            http.setFixedLengthStreamingMode(length);
+            http.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            http.connect();
+            try(OutputStream os = http.getOutputStream()) {
+                os.write(out);
+            }
+            Logger.info("POST Request completed!");
         } catch(Exception e) {
             e.printStackTrace();
         }
-        return entity;
     }
 
 }

@@ -1,5 +1,6 @@
 package net.gopine.mixins.client;
 
+import ga.yukii.RessourceLoader;
 import net.gopine.GopineClient;
 import net.gopine.events.impl.client.EventTick;
 import net.gopine.events.impl.gui.EventGuiSwitch;
@@ -7,7 +8,6 @@ import net.gopine.events.impl.player.input.EventKeyboardKeyPressed;
 import net.gopine.events.impl.player.input.EventKeyboardKeyReleased;
 import net.gopine.events.impl.player.input.EventMouseLeftClick;
 import net.gopine.events.impl.player.input.EventMouseRightClick;
-import ga.yukii.RessourceLoader;
 import net.gopine.events.impl.world.EventWorldJoin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -86,8 +86,8 @@ public class MinecraftMixin {
 
             try
             {
-                inputstream = /*new RessourceLoader("icons/LogoCircle.png").newStream();*/this.mcDefaultResourcePack.getInputStream(new ResourceLocation("icons/LogoCircle.png"));
-                inputstream1 = /*new RessourceLoader("icons/LogoCircle.png").newStream();*/this.mcDefaultResourcePack.getInputStream(new ResourceLocation("icons/LogoCircle.png"));
+                inputstream = new RessourceLoader("icons/rsz_logocircle.png").newStream();
+                inputstream1 = new RessourceLoader("icons/rsz_logocircle.png").newStream();
 
                 if(inputstream == null) {
                     throw new Error();

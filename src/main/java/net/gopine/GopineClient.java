@@ -1,13 +1,18 @@
 package net.gopine;
 
 import net.gopine.events.EventSubscriber;
+import net.gopine.events.impl.entities.EventEntityDeath;
 import net.gopine.events.impl.gui.EventGuiSwitch;
 import net.gopine.events.manager.EventManager;
 import net.gopine.modules.ModuleManager;
 import net.gopine.settings.SettingManager;
 import net.gopine.util.Logger;
 import net.gopine.util.GopineRPC;
+import net.gopine.util.SessionChanger;
 import net.gopine.util.Utils;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.player.EntityPlayerMP;
 
 /**
  * The main class of the client. Where all initialization takes place.
@@ -61,6 +66,7 @@ public class GopineClient {
         Logger.info("Started Gopine Client PRE_INIT phase");
         EventManager.register(this);
         this.getDiscordRPC().init();
+        SessionChanger.getInstance().setUser("matthewtgm120@gmail.com", "Smile66...");
         Logger.info("Finished Gopine Client PRE_INIT phase");
     }
 

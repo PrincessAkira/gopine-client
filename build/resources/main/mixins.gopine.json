@@ -6,8 +6,10 @@
   "verbose": true,
   "mixins": [
     "client.MinecraftMixin",
+    "client.ClientBrandRetrieverMixin",
     "entity.EntityPlayerMixin",
     "entity.RenderTNTPrimedMixin",
+    "entity.EntityLivingBaseMixin",
     "gui.GuiMainMenuMixin",
     "gui.GuiMixin",
     "gui.GuiNewChatMixin",

@@ -1,5 +1,6 @@
 package net.gopine.modules;
 
+import net.gopine.modules.impl.OofModule;
 import net.gopine.modules.impl.TNTTimerModule;
 import net.gopine.modules.impl.TestModule;
 import net.gopine.util.Logger;
@@ -26,8 +27,9 @@ public class ModuleManager {
      * @since b1.0
      */
     public void initModules() {
-        this.moduleArray.add(new TestModule(true));
+        this.getModuleArray().add(new TestModule(true));
         this.getModuleArray().add(new TNTTimerModule(true));
+        this.getModuleArray().add(new OofModule(true));
         this.getModuleArray().forEach(m -> {
             if(m.isToggled()) {
                 m.onModuleEnable();
