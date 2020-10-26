@@ -136,6 +136,13 @@ public class RenderUtils {
         GlStateManager.disableBlend();
     }
 
+    public void drawHollowRect(int x, int y, int width, int height, int color) {
+        this.drawHorizontalLine(x, x + width, y, color);
+        this.drawHorizontalLine(x, x + width, y + height, color);
+        this.drawVerticalLine(x, y + height, y, color);
+        this.drawVerticalLine(x + width, y + height, y, color);
+    }
+
     /**
      * Draw a 1 pixel wide horizontal line
      * @author MatthewTGM | MatthewTGM#4058

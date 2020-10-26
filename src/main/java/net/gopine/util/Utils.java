@@ -1,5 +1,6 @@
 package net.gopine.util;
 
+import net.gopine.assets.gui.GuiGopineHUDEditor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 
@@ -27,6 +28,10 @@ public class Utils {
         else if(!mc.isIntegratedServerRunning() && mc.getCurrentServerData() != null)
             discordRPC.setPresence("Playing on " + mc.getCurrentServerData().serverIP, "Ingame", "gopinelarge");
 
+    }
+
+    public void openModuleHUDConfig() {
+        Minecraft.getMinecraft().displayGuiScreen(new GuiGopineHUDEditor());
     }
 
 }

@@ -136,7 +136,7 @@ public class MinecraftMixin {
      */
     @Inject(method = "createDisplay", at = @At("RETURN"))
     private void createDisplay(CallbackInfo ci) {
-        Display.setTitle(GopineClient.getInstance().CLIENT_NAME + " " + GopineClient.getInstance().CLIENT_VER + " [" + GopineClient.getInstance().BRANCH_NAME + "]");
+        Display.setTitle(GopineClient.CLIENT_NAME + " " + GopineClient.CLIENT_VER + " [" + GopineClient.BRANCH_NAME + "]");
     }
 
     /*
@@ -166,9 +166,9 @@ public class MinecraftMixin {
     @Inject(method = "dispatchKeypresses", at = @At(value = "INVOKE_ASSIGN", target = "Lorg/lwjgl/input/Keyboard;getEventKeyState()Z", remap = false))
     private void runTickKeyboard(CallbackInfo ci) {
         if (Keyboard.getEventKeyState())
-            new EventKeyboardKeyPressed(Keyboard.isRepeatEvent(), Keyboard.getEventKey());
+            new EventKeyboardKeyPressed(Keyboard.isRepeatEvent(), Keyboard.getEventKey()).call();
         else
-            new EventKeyboardKeyReleased(Keyboard.isRepeatEvent(), Keyboard.getEventKey());
+            new EventKeyboardKeyReleased(Keyboard.isRepeatEvent(), Keyboard.getEventKey()).call();
     }
 
     /**

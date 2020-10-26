@@ -58,7 +58,6 @@ public class OofModListener {
         final FloatControl gainControl = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
         gainControl.setValue(this.mod.getVolume() - 30.0f);
         clip.start();*/
-        Logger.info("PLAYING SOUND NOW!");
         this.mc.thePlayer.playSound("gopineclient:oof", 30.0f, 1.0f);
     }
 

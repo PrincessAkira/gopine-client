@@ -14,6 +14,7 @@
     "gui.GuiMixin",
     "gui.GuiNewChatMixin",
     "networking.NetHandlerPlayClientMixin",
-    "renderer.ItemRendererMixin"
+    "renderer.ItemRendererMixin",
+    "renderer.EntityRendererMixin"
   ]
 }
