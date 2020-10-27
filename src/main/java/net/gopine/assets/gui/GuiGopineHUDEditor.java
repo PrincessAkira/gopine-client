@@ -43,7 +43,7 @@ public class GuiGopineHUDEditor extends GuiScreen {
             m.onDummyRender(pos);
             if(m.approximateWidth != 0 && m.approximateHeight != 0) {
                 renderUtils.drawHollowRect(pos.getExactPosX(), pos.getExactPosY(), m.approximateWidth, m.approximateHeight, -1);
-                //renderUtils.drawRect(pos.getExactPosX(), pos.getExactPosY(), m.approximateWidth, m.approximateHeight, new Color(255, 255, 255, 133).getRGB());
+                renderUtils.drawRect(pos.getExactPosX(), pos.getExactPosY(), pos.getExactPosX() + m.approximateWidth, pos.getExactPosY() + m.approximateHeight, new Color(255, 255, 255, 133).getRGB());
             }
         });
         super.drawScreen(mouseX, mouseY, partialTicks);
@@ -67,7 +67,7 @@ public class GuiGopineHUDEditor extends GuiScreen {
     @Override
     public void onGuiClosed() {
         modules.forEach((key, value) -> {
-            key.pos = value;
+            GopineClient.getInstance().getFileHandler().saveBasicModuleData(key.name, key.category, key.toggled, value);
         });
     }
     /**

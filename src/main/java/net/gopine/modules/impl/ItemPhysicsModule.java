@@ -1,5 +1,6 @@
 package net.gopine.modules.impl;
 
+import net.gopine.GopineClient;
 import net.gopine.modules.Module;
 import net.gopine.modules.ModuleCategory;
 
@@ -10,8 +11,13 @@ public class ItemPhysicsModule extends Module {
         ItemPhysicsModule.shouldBeFlat = shouldBeFlat;
     }
 
-    public ItemPhysicsModule(boolean toggled) {
-        super("Item Physics", ModuleCategory.GAMEPLAY, toggled);
+    public ItemPhysicsModule() {
+        super("Item Physics", ModuleCategory.GAMEPLAY);
+    }
+
+    @Override
+    public void saveModuleData() {
+        GopineClient.getInstance().getFileHandler().saveBasicModuleData(this.name, this.category, shouldBeFlat);
     }
 
     @Override

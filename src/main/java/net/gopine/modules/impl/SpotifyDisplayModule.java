@@ -41,8 +41,8 @@ import static net.minecraft.client.gui.Gui.drawScaledCustomSizeModalRect;
 
 public class SpotifyDisplayModule extends RenderedModule {
 
-    public SpotifyDisplayModule(boolean toggled) {
-        super("Spotify", ModuleCategory.RENDERING, toggled);
+    public SpotifyDisplayModule() {
+        super("Spotify", ModuleCategory.RENDERING);
         this.approximateWidth = 290;
         this.approximateHeight = 64;
     }
@@ -94,11 +94,12 @@ public class SpotifyDisplayModule extends RenderedModule {
         super.onModuleEnable();
     }
 
-    private final Color darkGrey = new Color(169, 169, 169, 133);
-    private final Color lightGrey = new Color(105, 105, 105, 133);
+    private final Color darkGrey = new Color(169, 169, 169);
+    private final Color lightGrey = new Color(145, 145, 145);
 
     @Override
     public void onRender(ScreenPos pos) {
+        new RenderUtils().drawRect(pos.getExactPosX(), pos.getExactPosY(), pos.getExactPosX() + this.approximateWidth, pos.getExactPosY() + this.approximateHeight, new Color(70, 70, 70, 122).getRGB());
         if (coverImage != null && coverImageBuffer != null) {
             Minecraft.getMinecraft().getTextureManager().bindTexture(coverImage);
             drawScaledCustomSizeModalRect(pos.getExactPosX(), pos.getExactPosY(), 0, 0, 64, 64, 64, 64, 64, 64);
@@ -119,7 +120,7 @@ public class SpotifyDisplayModule extends RenderedModule {
             }
         }
         if (currentlyPlaying != null) {
-            String msg = currentlyPlaying.getName();
+            font.drawString(currentlyPlaying.getName(), pos.getExactPosX() + 75, pos.getExactPosY() + 10, -1);
             String authorList;
             if (currentlyPlaying.getArtists().length == 1) {
                 authorList = currentlyPlaying.getArtists()[0].getName();
@@ -143,8 +144,7 @@ public class SpotifyDisplayModule extends RenderedModule {
                 }
                 authorList = authors.toString();
             }
-            msg += " - " + authorList;
-            font.drawString(msg, pos.getExactPosX() + 75, pos.getExactPosY() + 10, -1);
+            font.drawString(authorList, pos.getExactPosX() + 75, pos.getExactPosY() + 20, -1);
         }
         super.onRender(pos);
     }

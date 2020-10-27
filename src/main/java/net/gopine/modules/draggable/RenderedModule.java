@@ -1,5 +1,6 @@
 package net.gopine.modules.draggable;
 
+import net.gopine.GopineClient;
 import net.gopine.assets.gui.GuiGopineHUDEditor;
 import net.gopine.events.impl.client.modules.EventModuleDisable;
 import net.gopine.events.impl.client.modules.EventModuleEnable;
@@ -9,6 +10,7 @@ import net.gopine.modules.ModuleCategory;
 import net.gopine.util.Logger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,16 +53,55 @@ public class RenderedModule {
         return draggableElementList;
     }
 
-    public RenderedModule(String name, ModuleCategory category, boolean toggled) {
+    public RenderedModule(String name, ModuleCategory category) {
         this.name = name;
         this.category = category;
-        this.toggled = toggled;
 
-        if(this.pos == null) this.pos = new ScreenPos(0, 0);
+        if(GopineClient.getInstance().getFileHandler().readBasicModuleData(this.name) == null) {
+            this.toggled = true;
+        } else {
+            toggled = (boolean) GopineClient.getInstance().getFileHandler().readBasicModuleData(this.name).get("toggle_state");
+        }
+
+        if(this.pos == null && GopineClient.getInstance().getFileHandler().readBasicModuleData(this.name) == null) {
+            this.pos = new ScreenPos(0, 0);
+        } else if(this.pos == null) {
+            this.pos = new ScreenPos(0, 0);
+            final JSONObject obj = (JSONObject) GopineClient.getInstance().getFileHandler().readBasicModuleData(this.name).get("pos");
+            Logger.ModLogger.error(obj);
+            this.pos.setExactPos(Integer.parseInt(String.valueOf(obj.get("x"))), Integer.parseInt(String.valueOf(obj.get("y"))));
+        }
         if(this.approximateHeight == 0) approximateHeight = 50;
         if(this.approximateWidth == 0) approximateWidth = 50;
-        Logger.ModLogger.warn(this.name + " X:" + pos.getExactPosX());
-        Logger.ModLogger.warn(this.name + " Y:" + pos.getExactPosY());
+        this.setupModule();
+    }
+
+    /**
+     * Sets up the initial module settings etc
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
+    private void setupModule() {
+        Logger.ModLogger.info("Initializing module: " + this.name);
+        try {
+            this.onModuleSetup();
+            this.saveModuleData();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Called on module setup
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
+    public void onModuleSetup() {
+
+    }
+
+    public void saveModuleData() {
+        GopineClient.getInstance().getFileHandler().saveBasicModuleData(this.name, this.category, this.toggled, this.pos);
     }
 
     /**

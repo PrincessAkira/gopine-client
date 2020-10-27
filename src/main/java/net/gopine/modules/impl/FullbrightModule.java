@@ -6,8 +6,8 @@ import net.minecraft.client.Minecraft;
 
 public class FullbrightModule extends Module {
 
-    public FullbrightModule(boolean toggled) {
-        super("Fullbright", ModuleCategory.RENDERING, toggled);
+    public FullbrightModule() {
+        super("Fullbright", ModuleCategory.RENDERING);
     }
 
     private float oldGamma;

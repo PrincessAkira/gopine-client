@@ -21,8 +21,8 @@ public class TestModule extends RenderedModule {
 
     protected float zLevelFloat;
 
-    public TestModule(boolean toggled) {
-        super("Test", ModuleCategory.CHAT, toggled);
+    public TestModule() {
+        super("Test", ModuleCategory.CHAT);
         this.approximateHeight = 10;
     }
 

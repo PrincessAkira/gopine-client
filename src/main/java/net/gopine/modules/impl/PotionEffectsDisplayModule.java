@@ -20,8 +20,8 @@ public class PotionEffectsDisplayModule extends RenderedModule {
 
     protected float zLevelFloat;
 
-    public PotionEffectsDisplayModule(boolean toggled) {
-        super("Potion Effect Display", ModuleCategory.RENDERING, toggled);
+    public PotionEffectsDisplayModule() {
+        super("Potion Effect Display", ModuleCategory.RENDERING);
         this.approximateWidth = 101;
         this.approximateHeight = 154;
     }

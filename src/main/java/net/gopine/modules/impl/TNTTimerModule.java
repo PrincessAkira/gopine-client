@@ -1,5 +1,6 @@
 package net.gopine.modules.impl;
 
+import net.gopine.GopineClient;
 import net.gopine.modules.Module;
 import net.gopine.modules.ModuleCategory;
 
@@ -10,8 +11,13 @@ public class TNTTimerModule extends Module {
         TNTTimerModule.shouldRenderTag = shouldRenderTag;
     }
 
-    public TNTTimerModule(boolean toggled) {
-        super("TNT Timer", ModuleCategory.GAMEPLAY, toggled);
+    public TNTTimerModule() {
+        super("TNT Timer", ModuleCategory.GAMEPLAY);
+    }
+
+    @Override
+    public void saveModuleData() {
+        GopineClient.getInstance().getFileHandler().saveBasicModuleData(this.name, this.category, shouldRenderTag);
     }
 
     @Override

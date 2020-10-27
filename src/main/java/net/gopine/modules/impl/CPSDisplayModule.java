@@ -20,8 +20,8 @@ public class CPSDisplayModule extends RenderedModule {
     private boolean rightWasPressed = false;
     private long rightLastPressed;
 
-    public CPSDisplayModule(boolean toggled) {
-        super("CPS", ModuleCategory.RENDERING, toggled);
+    public CPSDisplayModule() {
+        super("CPS", ModuleCategory.RENDERING);
         this.approximateHeight = 10;
     }
 

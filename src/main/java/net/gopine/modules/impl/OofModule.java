@@ -19,8 +19,8 @@ public class OofModule extends Module {
         return volume;
     }
 
-    public OofModule(boolean toggled) {
-        super("OofMod", ModuleCategory.GAMEPLAY, toggled);
+    public OofModule() {
+        super("OofMod", ModuleCategory.GAMEPLAY);
     }
 
     @Override

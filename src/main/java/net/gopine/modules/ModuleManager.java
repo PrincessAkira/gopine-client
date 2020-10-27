@@ -40,22 +40,22 @@ public class ModuleManager {
      * Javadoc unused
      */
     public void declareRegularModules() {
-        //this.getModuleArray().add(new TestModule(false));
-        this.getModuleArray().add(new TNTTimerModule(true));
-        this.getModuleArray().add(new OofModule(true));
-        this.getModuleArray().add(new FullbrightModule(true));
-        this.getModuleArray().add(new ItemPhysicsModule(true));
+        //this.getModuleArray().add(new TestModule());
+        this.getModuleArray().add(new TNTTimerModule());
+        this.getModuleArray().add(new OofModule());
+        this.getModuleArray().add(new FullbrightModule());
+        this.getModuleArray().add(new ItemPhysicsModule());
     }
     /**
      * Javadoc unused
      */
     public void declareRenderModules() {
-        //this.getRenderedModuleArray().add(new TestModule(true));
-        this.getRenderedModuleArray().add(new FPSDisplayModule(true));
-        this.getRenderedModuleArray().add(new CPSDisplayModule(true));
-        this.getRenderedModuleArray().add(new PotionEffectsDisplayModule(true));
-        this.getRenderedModuleArray().add(new SpotifyDisplayModule(true));
-        this.getRenderedModuleArray().add(new PingDisplayModule(true));
+        //this.getRenderedModuleArray().add(new TestModule());
+        this.getRenderedModuleArray().add(new FPSDisplayModule());
+        this.getRenderedModuleArray().add(new CPSDisplayModule());
+        this.getRenderedModuleArray().add(new PotionEffectsDisplayModule());
+        this.getRenderedModuleArray().add(new SpotifyDisplayModule());
+        this.getRenderedModuleArray().add(new PingDisplayModule());
     }
     /**
      * Initializes all modules in the client

@@ -1,5 +1,6 @@
 package net.gopine.modules;
 
+import net.gopine.GopineClient;
 import net.gopine.assets.gui.GuiGopineHUDEditor;
 import net.gopine.events.impl.client.modules.EventModuleDisable;
 import net.gopine.events.impl.client.modules.EventModuleEnable;
@@ -40,10 +41,14 @@ public abstract class Module {
         this.toggled = toggled;
     }
 
-    public Module(String name, ModuleCategory category, boolean toggled) {
+    public Module(String name, ModuleCategory category) {
         this.name = name;
         this.category = category;
-        this.toggled = toggled;
+        if(GopineClient.getInstance().getFileHandler().readBasicModuleData(this.name) == null) {
+            this.toggled = true;
+        } else {
+            toggled = (boolean) GopineClient.getInstance().getFileHandler().readBasicModuleData(this.name).get("toggle_state");
+        }
         this.setupModule();
     }
 
@@ -56,6 +61,7 @@ public abstract class Module {
         Logger.ModLogger.info("Initializing module: " + this.name);
         try {
             this.onModuleSetup();
+            this.saveModuleData();
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -68,6 +74,10 @@ public abstract class Module {
      */
     public void onModuleSetup() {
 
+    }
+
+    public void saveModuleData() {
+        GopineClient.getInstance().getFileHandler().saveBasicModuleData(this.name, this.category, this.toggled);
     }
 
     /**

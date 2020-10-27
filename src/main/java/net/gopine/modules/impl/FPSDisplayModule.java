@@ -8,8 +8,8 @@ import net.minecraft.client.Minecraft;
 
 public class FPSDisplayModule extends RenderedModule {
 
-    public FPSDisplayModule(boolean toggled) {
-        super("FPS", ModuleCategory.RENDERING, toggled);
+    public FPSDisplayModule() {
+        super("FPS", ModuleCategory.RENDERING);
         this.approximateHeight = 10;
     }
 
@@ -24,7 +24,7 @@ public class FPSDisplayModule extends RenderedModule {
     @Override
     public void onDummyRender(ScreenPos pos) {
         font.drawString("[999 FPS]", pos.getExactPosX(), pos.getExactPosY(), -1);
-        this.approximateWidth = font.getStringWidth("999 FPS");
+        this.approximateWidth = font.getStringWidth("[999 FPS]");
         super.onDummyRender(pos);
     }
 

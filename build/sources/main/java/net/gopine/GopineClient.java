@@ -1,21 +1,19 @@
 package net.gopine;
 
 import net.gopine.events.EventSubscriber;
-import net.gopine.events.impl.entities.EventEntityDeath;
 import net.gopine.events.impl.gui.EventGuiSwitch;
 import net.gopine.events.impl.player.input.EventKeyboardKeyPressed;
 import net.gopine.events.manager.EventManager;
+import net.gopine.modules.ModuleCategory;
 import net.gopine.modules.ModuleManager;
 import net.gopine.settings.SettingManager;
 import net.gopine.util.Logger;
 import net.gopine.util.GopineRPC;
-import net.gopine.util.SessionChanger;
 import net.gopine.util.Utils;
+import net.gopine.util.files.FileHandler;
 import net.gopine.util.keybindings.GopineKeybinding;
 import net.gopine.util.keybindings.KeybindingManager;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.player.EntityPlayerMP;
+import org.json.simple.JSONObject;
 import org.lwjgl.input.Keyboard;
 
 /**
@@ -41,6 +39,7 @@ public class GopineClient {
     private final ModuleManager MODULE_MANAGER = new ModuleManager();
     private final SettingManager SETTING_MANAGER = new SettingManager();
     private final KeybindingManager KEYBIND_MANAGER = new KeybindingManager();
+    private final FileHandler FILE_HANDLER = new FileHandler();
     /**
      * @return an instance of {@link GopineRPC}
      * @author Hot Tutorials | Hot Tutorials#8262
@@ -69,6 +68,14 @@ public class GopineClient {
     public KeybindingManager getKeybindingsManager() {
         return KEYBIND_MANAGER;
     }
+    /**
+     * @return an instance of {@link FileHandler}
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
+    public FileHandler getFileHandler() {
+        return FILE_HANDLER;
+    }
 
     /**
      * The client preInitialization method.
@@ -79,6 +86,7 @@ public class GopineClient {
         Logger.info("Started Gopine Client PRE_INIT phase");
         EventManager.register(this);
         this.getDiscordRPC().init();
+        FILE_HANDLER.initFiles();
         KEYBIND_MANAGER.initKeybindingManager();
         Logger.info("Finished Gopine Client PRE_INIT phase");
     }
