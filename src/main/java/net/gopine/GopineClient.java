@@ -11,6 +11,8 @@ import net.gopine.util.Logger;
 import net.gopine.util.GopineRPC;
 import net.gopine.util.SessionChanger;
 import net.gopine.util.Utils;
+import net.gopine.util.keybindings.GopineKeybinding;
+import net.gopine.util.keybindings.KeybindingManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -38,6 +40,7 @@ public class GopineClient {
     private final GopineRPC GOPINE_RPC = new GopineRPC();
     private final ModuleManager MODULE_MANAGER = new ModuleManager();
     private final SettingManager SETTING_MANAGER = new SettingManager();
+    private final KeybindingManager KEYBIND_MANAGER = new KeybindingManager();
     /**
      * @return an instance of {@link GopineRPC}
      * @author Hot Tutorials | Hot Tutorials#8262
@@ -58,6 +61,14 @@ public class GopineClient {
     public SettingManager getSettingManager() {
         return SETTING_MANAGER;
     }
+    /**
+     * @return an instance of {@link KeybindingManager}
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
+    public KeybindingManager getKeybindingsManager() {
+        return KEYBIND_MANAGER;
+    }
 
     /**
      * The client preInitialization method.
@@ -68,6 +79,7 @@ public class GopineClient {
         Logger.info("Started Gopine Client PRE_INIT phase");
         EventManager.register(this);
         this.getDiscordRPC().init();
+        KEYBIND_MANAGER.initKeybindingManager();
         Logger.info("Finished Gopine Client PRE_INIT phase");
     }
 
@@ -78,6 +90,15 @@ public class GopineClient {
      */
     public void init() {
         Logger.info("Started Gopine Client INIT phase");
+        KEYBIND_MANAGER.registerKeybinding(new GopineKeybinding("Open HUD Editor", Keyboard.KEY_RSHIFT) {
+
+            @Override
+            public void onClick() {
+                new Utils().openModuleHUDConfig();
+                super.onClick();
+            }
+
+        });
         MODULE_MANAGER.initModules();
         SETTING_MANAGER.initSettings();
         Logger.info("Finished Gopine Client INIT phase");

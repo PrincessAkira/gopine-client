@@ -3,6 +3,7 @@ package net.gopine.modules.impl;
 import net.gopine.modules.Module;
 import net.gopine.modules.ModuleCategory;
 import net.gopine.modules.draggable.DraggableElement;
+import net.gopine.modules.draggable.RenderedModule;
 import net.gopine.modules.draggable.ScreenPos;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -16,13 +17,12 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.Collection;
 
-public class TestModule extends Module {
+public class TestModule extends RenderedModule {
 
     protected float zLevelFloat;
 
     public TestModule(boolean toggled) {
-        super("Test", ModuleCategory.CHAT, toggled, true);
-        this.renderOutline = true;
+        super("Test", ModuleCategory.CHAT, toggled);
         this.approximateHeight = 10;
     }
 

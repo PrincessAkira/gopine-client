@@ -20,7 +20,7 @@ public class OofModule extends Module {
     }
 
     public OofModule(boolean toggled) {
-        super("OofMod", ModuleCategory.GAMEPLAY, toggled, false);
+        super("OofMod", ModuleCategory.GAMEPLAY, toggled);
     }
 
     @Override

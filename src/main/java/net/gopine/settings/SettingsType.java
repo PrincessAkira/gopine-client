@@ -4,7 +4,8 @@ public enum SettingsType {
 
     CHAT("CHAT"),
     GUI("GUI"),
-    PERFORMANCE("PERFORMANCE");
+    PERFORMANCE("PERFORMANCE"),
+    RENDERING("RENDERING");
 
     public String type;
 

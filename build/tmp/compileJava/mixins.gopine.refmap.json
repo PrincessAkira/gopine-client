@@ -13,6 +13,9 @@
     "net/gopine/mixins/renderer/EntityRendererMixin": {
       "updateCameraAndRender": "Lnet/minecraft/client/renderer/EntityRenderer;func_181560_a(FJ)V"
     },
+    "net/gopine/mixins/renderer/RenderMixin": {
+      "doRender": "Lnet/minecraft/client/renderer/entity/Render;func_76986_a(Lnet/minecraft/entity/Entity;DDDFF)V"
+    },
     "net/gopine/mixins/entity/EntityPlayerMixin": {
       "attackTargetEntityWithCurrentItem": "Lnet/minecraft/entity/player/EntityPlayer;func_71059_n(Lnet/minecraft/entity/Entity;)V"
     },
@@ -44,6 +47,9 @@
       "net/gopine/mixins/renderer/EntityRendererMixin": {
         "updateCameraAndRender": "Lbfk;a(FJ)V"
       },
+      "net/gopine/mixins/renderer/RenderMixin": {
+        "doRender": "Lbiv;a(Lpk;DDDFF)V"
+      },
       "net/gopine/mixins/entity/EntityPlayerMixin": {
         "attackTargetEntityWithCurrentItem": "Lwn;f(Lpk;)V"
       },
@@ -73,6 +79,9 @@
       },
       "net/gopine/mixins/renderer/EntityRendererMixin": {
         "updateCameraAndRender": "Lnet/minecraft/client/renderer/EntityRenderer;func_181560_a(FJ)V"
+      },
+      "net/gopine/mixins/renderer/RenderMixin": {
+        "doRender": "Lnet/minecraft/client/renderer/entity/Render;func_76986_a(Lnet/minecraft/entity/Entity;DDDFF)V"
       },
       "net/gopine/mixins/entity/EntityPlayerMixin": {
         "attackTargetEntityWithCurrentItem": "Lnet/minecraft/entity/player/EntityPlayer;func_71059_n(Lnet/minecraft/entity/Entity;)V"

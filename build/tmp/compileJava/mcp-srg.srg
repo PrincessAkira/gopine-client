@@ -23,3 +23,7 @@ MD: net/gopine/mixins/renderer/ItemRendererMixin/func_178108_a (FLnet/minecraft/
 MD: net/gopine/mixins/renderer/ItemRendererMixin/renderFireInFirstPerson (F)V net/gopine/mixins/renderer/ItemRendererMixin/func_78442_d (F)V
 MD: net/gopine/mixins/renderer/ItemRendererMixin/renderWaterOverlayTexture (F)V net/gopine/mixins/renderer/ItemRendererMixin/func_78448_c (F)V
 MD: net/gopine/mixins/renderer/ItemRendererMixin/renderOverlays (F)V net/gopine/mixins/renderer/ItemRendererMixin/func_78447_b (F)V
+MD: net/gopine/mixins/renderer/RenderEntityItemMixin/func_177078_a (Lnet/minecraft/item/ItemStack;)I net/gopine/mixins/renderer/RenderEntityItemMixin/func_177078_a (Lnet/minecraft/item/ItemStack;)I
+MD: net/gopine/mixins/renderer/RenderEntityItemMixin/doRender (Lnet/minecraft/entity/item/EntityItem;DDDFF)V net/gopine/mixins/renderer/RenderEntityItemMixin/func_76986_a (Lnet/minecraft/entity/item/EntityItem;DDDFF)V
+MD: net/gopine/mixins/renderer/RenderMixin/renderName (Lnet/minecraft/entity/Entity;DDD)V net/gopine/mixins/renderer/RenderMixin/func_177067_a (Lnet/minecraft/entity/Entity;DDD)V
+MD: net/gopine/mixins/renderer/RenderMixin/renderLivingLabel (Lnet/minecraft/entity/Entity;Ljava/lang/String;DDDI)V net/gopine/mixins/renderer/RenderMixin/func_147906_a (Lnet/minecraft/entity/Entity;Ljava/lang/String;DDDI)V

@@ -2,13 +2,14 @@ package net.gopine.modules.impl;
 
 import net.gopine.modules.Module;
 import net.gopine.modules.ModuleCategory;
+import net.gopine.modules.draggable.RenderedModule;
 import net.gopine.modules.draggable.ScreenPos;
 import org.lwjgl.input.Mouse;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CPSDisplayModule extends Module {
+public class CPSDisplayModule extends RenderedModule {
 
     private ArrayList<Long> leftClicks = new ArrayList<>();
     private ArrayList<Long> rightClicks = new ArrayList<>();
@@ -20,7 +21,7 @@ public class CPSDisplayModule extends Module {
     private long rightLastPressed;
 
     public CPSDisplayModule(boolean toggled) {
-        super("CPS", ModuleCategory.RENDERING, toggled, true);
+        super("CPS", ModuleCategory.RENDERING, toggled);
         this.approximateHeight = 10;
     }
 

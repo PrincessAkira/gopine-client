@@ -11,7 +11,7 @@ public class TNTTimerModule extends Module {
     }
 
     public TNTTimerModule(boolean toggled) {
-        super("TNT Timer", ModuleCategory.GAMEPLAY, toggled, false);
+        super("TNT Timer", ModuleCategory.GAMEPLAY, toggled);
     }
 
     @Override

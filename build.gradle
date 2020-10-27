@@ -68,6 +68,7 @@ dependencies {
     embed 'com.google.code.gson:gson:2.8.5'
     embed 'com.googlecode.json-simple:json-simple:1.1.1'
     embed 'com.jagrosh:DiscordIPC:0.4'
+    embed 'se.michaelthelin.spotify:spotify-web-api-java:6.3.0'
 }
 
 /*processResources {

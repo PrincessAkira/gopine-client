@@ -100,7 +100,7 @@ public class RenderUtils {
      * @author MatthewTGM | MatthewTGM#4058
      * @since b1.0
      */
-    public static void drawRect(int left, int top, int right, int bottom, int color)
+    public void drawRect(int left, int top, int right, int bottom, int color)
     {
         if (left < right)
         {

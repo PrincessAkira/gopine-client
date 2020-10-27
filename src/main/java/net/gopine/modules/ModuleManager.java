@@ -4,6 +4,7 @@ import net.gopine.assets.gui.GuiGopineHUDEditor;
 import net.gopine.events.EventSubscriber;
 import net.gopine.events.impl.client.EventRender;
 import net.gopine.events.manager.EventManager;
+import net.gopine.modules.draggable.RenderedModule;
 import net.gopine.modules.impl.*;
 import net.gopine.util.Logger;
 import net.minecraft.client.Minecraft;
@@ -17,7 +18,7 @@ public class ModuleManager {
 
     private Minecraft mc = Minecraft.getMinecraft();
     private List<Module> moduleArray = new ArrayList<>();
-
+    private List<RenderedModule> renderedModuleArray = new ArrayList<>();
     /**
      * @return an instance of the moduleArray variable
      * @author MatthewTGM | MatthewTGM#4058
@@ -28,18 +29,42 @@ public class ModuleManager {
     }
 
     /**
+     * @return an instance of the renderedModuleArray variable
+     * @author MatthewTGM | MatthewTGM#4058
+     * @since b1.0
+     */
+    public List<RenderedModule> getRenderedModuleArray() {
+        return renderedModuleArray;
+    }
+    /**
+     * Javadoc unused
+     */
+    public void declareRegularModules() {
+        //this.getModuleArray().add(new TestModule(false));
+        this.getModuleArray().add(new TNTTimerModule(true));
+        this.getModuleArray().add(new OofModule(true));
+        this.getModuleArray().add(new FullbrightModule(true));
+        this.getModuleArray().add(new ItemPhysicsModule(true));
+    }
+    /**
+     * Javadoc unused
+     */
+    public void declareRenderModules() {
+        //this.getRenderedModuleArray().add(new TestModule(true));
+        this.getRenderedModuleArray().add(new FPSDisplayModule(true));
+        this.getRenderedModuleArray().add(new CPSDisplayModule(true));
+        this.getRenderedModuleArray().add(new PotionEffectsDisplayModule(true));
+        this.getRenderedModuleArray().add(new SpotifyDisplayModule(true));
+        this.getRenderedModuleArray().add(new PingDisplayModule(true));
+    }
+    /**
      * Initializes all modules in the client
      * @author MatthewTGM | MatthewTGM#4058
      * @since b1.0
      */
     public void initModules() {
-        this.getModuleArray().add(new TestModule(false));
-        this.getModuleArray().add(new TNTTimerModule(true));
-        this.getModuleArray().add(new OofModule(true));
-        this.getModuleArray().add(new FullbrightModule(true));
-        this.getModuleArray().add(new FPSDisplayModule(true));
-        this.getModuleArray().add(new CPSDisplayModule(true));
-        this.getModuleArray().add(new PotionEffectsDisplayModule(true));
+        this.declareRegularModules();
+        this.declareRenderModules();
         this.getModuleArray().forEach(m -> {
             if(m.isToggled()) {
                 m.onModuleEnable();
@@ -47,21 +72,29 @@ public class ModuleManager {
                 m.onModuleDisable();
             }
         });
+        this.getRenderedModuleArray().forEach(rm -> {
+            if(rm.isToggled()) {
+                rm.onModuleEnable();
+            } else {
+                rm.onModuleDisable();
+            }
+        });
         EventManager.register(this);
         Logger.ModLogger.info("Registered " + this.getModuleCount(false) + " modules | " + this.getModuleCount(true) + " are enabled!");
     }
-
+    /**
+     * Javadoc unused
+     */
     @EventSubscriber
     public void onRender(EventRender e) {
         if(mc.currentScreen == null  || mc.currentScreen instanceof GuiChat) {
             if(mc.thePlayer != null && mc.thePlayer.getEntityWorld() != null) {
-                this.getModuleArray().forEach(m -> {
+                this.getRenderedModuleArray().forEach(m -> {
                     m.onRender(m.getScreenPos());
                 });
             }
         }
     }
-
     /**
      * Runs a module
      * @author MatthewTGM | MatthewTGM#4058
@@ -74,7 +107,6 @@ public class ModuleManager {
             module.onModuleDisable();
         }
     }
-
     /**
      * @return the count of all modules currently in the client
      * @param toggled whether to return only enabled modules or disabled
