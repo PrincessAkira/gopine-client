@@ -56,6 +56,17 @@ public class RenderEntityItemMixin extends Render<EntityItem> {
         return i;
     }
 
+    /**
+     * Renders a 3D object spinning in circles
+     * @param itemIn item
+     * @param p_177077_2_ unsure
+     * @param p_177077_4_ unsure
+     * @param p_177077_6_ unsure
+     * @param p_177077_8_ unsure
+     * @param p_177077_9_ unsure
+     * @author MatthewTGM| MatthewTGM#4058
+     * @since b1.0
+     */
     private int renderItem(EntityItem itemIn, double p_177077_2_, double p_177077_4_, double p_177077_6_, float p_177077_8_, IBakedModel p_177077_9_)
     {
         ItemStack itemstack = itemIn.getEntityItem();
@@ -93,6 +104,17 @@ public class RenderEntityItemMixin extends Render<EntityItem> {
         }
     }
 
+    /**
+     * Renders a flat item with basic pseudo physics on the ground
+     * @param itemIn item
+     * @param p_177077_2_ unsure
+     * @param p_177077_4_ unsure
+     * @param p_177077_6_ unsure
+     * @param p_177077_8_ unsure
+     * @param p_177077_9_ unsure
+     * @author MatthewTGM| MatthewTGM#4058
+     * @since b1.0
+     */
     private int renderItemWithPhysics(EntityItem itemIn, double p_177077_2_, double p_177077_4_, double p_177077_6_, float p_177077_8_, IBakedModel p_177077_9_)
     {
         ItemStack itemstack = itemIn.getEntityItem();
@@ -144,7 +166,9 @@ public class RenderEntityItemMixin extends Render<EntityItem> {
     }
 
     /**
-     * @author MatthewTGM | MatthewTGM#4058
+     * Overwrites the rendering to render either with or without physics
+     * @author MatthewTGM| MatthewTGM#4058
+     * @since b1.0
      */
     @Overwrite
     public void doRender(EntityItem entity, double x, double y, double z, float entityYaw, float partialTicks) {

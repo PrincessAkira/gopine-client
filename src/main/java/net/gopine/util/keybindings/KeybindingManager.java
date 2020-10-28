@@ -14,10 +14,18 @@ public class KeybindingManager {
 
     private List<GopineKeybinding> keybindingList = new ArrayList<>();
 
+    /**
+     * Registers a new keybinding into the client
+     * @param keybinding the keybinding being registered
+     * @author MatthewTGM| MatthewTGM#4058
+     * @since b1.0
+     */
     public void registerKeybinding(GopineKeybinding keybinding) {
         this.keybindingList.add(keybinding);
     }
-
+    /**
+     * Initializes the original keybinding manager
+     */
     public void initKeybindingManager() {
         EventManager.register(this);
     }

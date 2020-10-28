@@ -29,7 +29,6 @@ public class ScreenPos {
     public void setExactPosY(int exactPosY) {
         this.exactPosY = exactPosY;
     }
-
     public void setExactPos(int x, int y) {
         setExactPosX(x);
         setExactPosY(y);
@@ -48,7 +47,6 @@ public class ScreenPos {
     public void setFloatingPosY(float floatingPosY) {
         this.floatingPosY = floatingPosY;
     }
-
     public void setFloatingPos(float x, float y) {
         setFloatingPosX(x);
         setFloatingPosY(y);

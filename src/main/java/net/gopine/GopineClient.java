@@ -1,5 +1,6 @@
 package net.gopine;
 
+import ga.matthewtgm.utils.PlayerUtils;
 import net.gopine.events.EventSubscriber;
 import net.gopine.events.impl.gui.EventGuiSwitch;
 import net.gopine.events.impl.player.input.EventKeyboardKeyPressed;
@@ -13,6 +14,16 @@ import net.gopine.util.Utils;
 import net.gopine.util.files.FileHandler;
 import net.gopine.util.keybindings.GopineKeybinding;
 import net.gopine.util.keybindings.KeybindingManager;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.RenderPlayer;
+import net.minecraft.client.renderer.entity.layers.LayerRenderer;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EnumPlayerModelParts;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import org.json.simple.JSONObject;
 import org.lwjgl.input.Keyboard;
 
@@ -107,6 +118,16 @@ public class GopineClient {
             }
 
         });
+        KEYBIND_MANAGER.registerKeybinding(new GopineKeybinding("Drop Stack", Keyboard.KEY_U) {
+
+            @Override
+            public void onClick() {
+                final EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+                player.dropOneItem(true);
+                super.onClick();
+            }
+
+        });
         MODULE_MANAGER.initModules();
         SETTING_MANAGER.initSettings();
         Logger.info("Finished Gopine Client INIT phase");
@@ -118,26 +139,20 @@ public class GopineClient {
      * @since b0.1
      */
     public void shutdown() {
-
-    }
-
-    @EventSubscriber
-    public void keybindListenerTest(EventKeyboardKeyPressed e) {
-        if(e.keyCode == Keyboard.KEY_RSHIFT) {
-            new Utils().openModuleHUDConfig();
-        }
+        Logger.info("Started Gopine Client SHUTDOWN phase");
+        Logger.info("Finished Gopine Client SHUTDOWN phase");
     }
 
     /**
      * Changes the DiscordRPC fields based on current client actions
-     * @param e event variable
+     * @param event event variable
      * @author MatthewTGM | MatthewTGM#4058
      * @since b1.0
      */
     @EventSubscriber
-    public void onGuiSwitch(EventGuiSwitch e) {
+    public void onGuiSwitch(EventGuiSwitch event) {
         try {
-            new Utils().checkForDiscordRPCUpdateAvailability(this.getDiscordRPC(), e.screen);
+            new Utils().checkForDiscordRPCUpdateAvailability(this.getDiscordRPC(), event.screen);
         } catch(Exception ignored) {
         }
     }

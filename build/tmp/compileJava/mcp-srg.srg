@@ -9,6 +9,7 @@ FD: net/gopine/mixins/renderer/ItemRendererMixin/mc net/gopine/mixins/renderer/I
 FD: net/gopine/mixins/renderer/ItemRendererMixin/RES_UNDERWATER_OVERLAY net/gopine/mixins/renderer/ItemRendererMixin/field_110929_d
 FD: net/gopine/mixins/renderer/RenderManagerMixin/skinMap net/gopine/mixins/renderer/RenderManagerMixin/field_178636_l
 MD: net/gopine/mixins/client/ClientBrandRetrieverMixin/getClientModName ()Ljava/lang/String; net/gopine/mixins/client/ClientBrandRetrieverMixin/getClientModName ()Ljava/lang/String;
+MD: net/gopine/mixins/entity/EntityLivingBaseMixin/getLook (F)Lnet/minecraft/util/Vec3; net/gopine/mixins/entity/EntityLivingBaseMixin/func_70676_i (F)Lnet/minecraft/util/Vec3;
 MD: net/gopine/mixins/gui/GuiMainMenuMixin/initGui ()V net/gopine/mixins/gui/GuiMainMenuMixin/func_73866_w_ ()V
 MD: net/gopine/mixins/gui/GuiMainMenuMixin/drawScreen (IIF)V net/gopine/mixins/gui/GuiMainMenuMixin/func_73863_a (IIF)V
 MD: net/gopine/mixins/gui/GuiMixin/drawCenteredString (Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V net/gopine/mixins/gui/GuiMixin/func_73732_a (Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V

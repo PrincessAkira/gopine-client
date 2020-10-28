@@ -2,11 +2,13 @@ package net.gopine.assets.gui;
 
 import net.gopine.GopineClient;
 import net.gopine.modules.Module;
+import net.gopine.modules.draggable.DraggableElement;
 import net.gopine.modules.draggable.RenderedModule;
 import net.gopine.modules.draggable.ScreenPos;
 import net.gopine.util.Logger;
 import net.gopine.util.RenderUtils;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
@@ -19,7 +21,11 @@ import java.util.function.Predicate;
 public class GuiGopineHUDEditor extends GuiScreen {
 
     private final Map<RenderedModule, ScreenPos> modules = new HashMap<>();
+    private final Map<DraggableElement, ScreenPos> draggableElements = new HashMap<>();
     private Optional<RenderedModule> selectedModule = Optional.empty();
+
+    private boolean hovered;
+    private boolean dragged = false;
 
     private final RenderUtils renderUtils = new RenderUtils();
 
@@ -41,9 +47,21 @@ public class GuiGopineHUDEditor extends GuiScreen {
         modules.keySet().forEach(m -> {
             ScreenPos pos = modules.get(m);
             m.onDummyRender(pos);
+            if(!m.getDraggableElementList().isEmpty()) {
+                m.getDraggableElementList().forEach(de -> {
+                    ScreenPos pos1 = draggableElements.get(de);
+                    de.onDummyRender(pos1);
+                    fontRendererObj.drawString(m.name, pos1.getExactPosX(), pos1.getExactPosY() - 10, -1);
+                    if(de.approximateWidth != 0 && de.approximateHeight != 0) {
+                        renderUtils.drawHollowRect(pos.getExactPosX(), pos.getExactPosY(), m.approximateWidth, m.approximateHeight, -1);
+                        renderUtils.drawRect(pos.getExactPosX(), pos.getExactPosY(), pos.getExactPosX() + m.approximateWidth, pos.getExactPosY() + m.approximateHeight, new Color(255, 255, 255, 100).getRGB());
+                    }
+                });
+            }
+            fontRendererObj.drawString(m.name, pos.getExactPosX(), pos.getExactPosY() - 10, -1);
             if(m.approximateWidth != 0 && m.approximateHeight != 0) {
                 renderUtils.drawHollowRect(pos.getExactPosX(), pos.getExactPosY(), m.approximateWidth, m.approximateHeight, -1);
-                renderUtils.drawRect(pos.getExactPosX(), pos.getExactPosY(), pos.getExactPosX() + m.approximateWidth, pos.getExactPosY() + m.approximateHeight, new Color(255, 255, 255, 133).getRGB());
+                renderUtils.drawRect(pos.getExactPosX(), pos.getExactPosY(), pos.getExactPosX() + m.approximateWidth, pos.getExactPosY() + m.approximateHeight, new Color(255, 255, 255, 100).getRGB());
             }
         });
         super.drawScreen(mouseX, mouseY, partialTicks);
@@ -56,7 +74,19 @@ public class GuiGopineHUDEditor extends GuiScreen {
         if(selectedModule.isPresent()) {
             RenderedModule m = selectedModule.get();
             ScreenPos pos = m.getScreenPos();
-            pos.setExactPos(pos.getExactPosX() + mouseX - prevX, pos.getExactPosY() + mouseY - prevY);
+            if(pos.getExactPosY() < 0) {
+                pos.setExactPos(pos.getExactPosX(), 10);
+            }
+            if(m.approximateHeight > new ScaledResolution(mc).getScaledHeight()) {
+                pos.setExactPos(pos.getExactPosX(), new ScaledResolution(mc).getScaledHeight());
+            }
+            if(pos.getExactPosX() < 0) {
+                pos.setExactPos(10, pos.getExactPosY());
+            }
+            if(m.approximateWidth > new ScaledResolution(mc).getScaledWidth()) {
+                pos.setExactPos(new ScaledResolution(mc).getScaledWidth(), pos.getExactPosY());
+            }
+            pos.setExactPos(pos.getExactPosX() + mouseX - this.prevX, pos.getExactPosY() + mouseY - this.prevY);
         }
         this.prevX = mouseX;
         this.prevY = mouseY;
@@ -79,6 +109,12 @@ public class GuiGopineHUDEditor extends GuiScreen {
         this.prevY = mouseY;
 
         this.selectedModule = this.modules.keySet().stream().filter(new MouseOver(mouseX, mouseY)).findFirst();
+    }
+
+    @Override
+    protected void mouseReleased(int mouseX, int mouseY, int state) {
+
+        super.mouseReleased(mouseX, mouseY, state);
     }
 
     private static class MouseOver implements Predicate<RenderedModule> {

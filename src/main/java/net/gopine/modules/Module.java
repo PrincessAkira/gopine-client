@@ -44,10 +44,10 @@ public abstract class Module {
     public Module(String name, ModuleCategory category) {
         this.name = name;
         this.category = category;
-        if(GopineClient.getInstance().getFileHandler().readBasicModuleData(this.name) == null) {
+        if(GopineClient.getInstance().getFileHandler().readModuleData(this.name) == null) {
             this.toggled = true;
         } else {
-            toggled = (boolean) GopineClient.getInstance().getFileHandler().readBasicModuleData(this.name).get("toggle_state");
+            toggled = (boolean) GopineClient.getInstance().getFileHandler().readModuleData(this.name).get("toggle_state");
         }
         this.setupModule();
     }
@@ -76,6 +76,11 @@ public abstract class Module {
 
     }
 
+    /**
+     * Saves basic module data (NAME, CATEGORY, TOGGLE STATE)
+     * @author MatthewTGM| MatthewTGM#4058
+     * @since b1.0
+     */
     public void saveModuleData() {
         GopineClient.getInstance().getFileHandler().saveBasicModuleData(this.name, this.category, this.toggled);
     }

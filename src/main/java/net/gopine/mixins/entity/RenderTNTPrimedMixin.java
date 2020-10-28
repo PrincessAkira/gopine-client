@@ -27,6 +27,17 @@ public class RenderTNTPrimedMixin {
 
     private Minecraft mc = Minecraft.getMinecraft();
 
+    /**
+     * @param entity instance of the entity type
+     * @param x x pos
+     * @param y y pos
+     * @param z z pos
+     * @param entityYaw entity yaw
+     * @param partialTicks partialTicks
+     * @param ci unused
+     * @author MatthewTGM| MatthewTGM#4058
+     * @since b1.0
+     */
     @Inject(method = "doRender", at = @At("HEAD"))
     public void doRender(EntityTNTPrimed entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo ci) {
         if(TNTTimerModule.shouldRenderTag) {
@@ -38,6 +49,17 @@ public class RenderTNTPrimedMixin {
         }
     }
 
+    /**
+     * Renders the fuse time above the TNT entity
+     * @param tntRenderer instance of the tnt renderer
+     * @param tntPrimed instance of the entity
+     * @param x the x pos
+     * @param y the y pos
+     * @param z the z pos
+     * @param partialTicks particalTicks
+     * @author MatthewTGM| MatthewTGM#4058
+     * @since b1.0
+     */
     public void renderTag(final RenderTNTPrimed tntRenderer, final EntityTNTPrimed tntPrimed, final double x, final double y, final double z, final float partialTicks) {
         if (tntPrimed.fuse < 1) {
             return;

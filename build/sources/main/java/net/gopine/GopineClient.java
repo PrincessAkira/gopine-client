@@ -13,6 +13,8 @@ import net.gopine.util.Utils;
 import net.gopine.util.files.FileHandler;
 import net.gopine.util.keybindings.GopineKeybinding;
 import net.gopine.util.keybindings.KeybindingManager;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import org.json.simple.JSONObject;
 import org.lwjgl.input.Keyboard;
 
@@ -107,6 +109,16 @@ public class GopineClient {
             }
 
         });
+        KEYBIND_MANAGER.registerKeybinding(new GopineKeybinding("Drop stack", Keyboard.KEY_U) {
+
+            @Override
+            public void onClick() {
+                final EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+                player.dropOneItem(true);
+                super.onClick();
+            }
+
+        });
         MODULE_MANAGER.initModules();
         SETTING_MANAGER.initSettings();
         Logger.info("Finished Gopine Client INIT phase");
@@ -119,13 +131,6 @@ public class GopineClient {
      */
     public void shutdown() {
 
-    }
-
-    @EventSubscriber
-    public void keybindListenerTest(EventKeyboardKeyPressed e) {
-        if(e.keyCode == Keyboard.KEY_RSHIFT) {
-            new Utils().openModuleHUDConfig();
-        }
     }
 
     /**

@@ -57,18 +57,17 @@ public class RenderedModule {
         this.name = name;
         this.category = category;
 
-        if(GopineClient.getInstance().getFileHandler().readBasicModuleData(this.name) == null) {
+        if(GopineClient.getInstance().getFileHandler().readModuleData(this.name) == null) {
             this.toggled = true;
         } else {
-            toggled = (boolean) GopineClient.getInstance().getFileHandler().readBasicModuleData(this.name).get("toggle_state");
+            toggled = (boolean) GopineClient.getInstance().getFileHandler().readModuleData(this.name).get("toggle_state");
         }
 
-        if(this.pos == null && GopineClient.getInstance().getFileHandler().readBasicModuleData(this.name) == null) {
+        if(this.pos == null && GopineClient.getInstance().getFileHandler().readModuleData(this.name) == null) {
             this.pos = new ScreenPos(0, 0);
         } else if(this.pos == null) {
             this.pos = new ScreenPos(0, 0);
-            final JSONObject obj = (JSONObject) GopineClient.getInstance().getFileHandler().readBasicModuleData(this.name).get("pos");
-            Logger.ModLogger.error(obj);
+            final JSONObject obj = (JSONObject) GopineClient.getInstance().getFileHandler().readModuleData(this.name).get("pos");
             this.pos.setExactPos(Integer.parseInt(String.valueOf(obj.get("x"))), Integer.parseInt(String.valueOf(obj.get("y"))));
         }
         if(this.approximateHeight == 0) approximateHeight = 50;
@@ -100,6 +99,11 @@ public class RenderedModule {
 
     }
 
+    /**
+     * Saves the basic data of a module (NAME, CATEGORY, TOGGLE STATE, POSITIONING)
+     * @author MatthewTGM| MatthewTGM#4058
+     * @since b1.0
+     */
     public void saveModuleData() {
         GopineClient.getInstance().getFileHandler().saveBasicModuleData(this.name, this.category, this.toggled, this.pos);
     }
@@ -121,13 +125,7 @@ public class RenderedModule {
     }
 
     public void onDummyRender(ScreenPos pos) {
-        if(!draggableElementList.isEmpty()) {
-            draggableElementList.forEach(d -> {
-                if(Minecraft.getMinecraft().currentScreen instanceof GuiGopineHUDEditor) {
-                    d.onDummyRender(pos);
-                }
-            });
-        }
+
     }
 
     /**

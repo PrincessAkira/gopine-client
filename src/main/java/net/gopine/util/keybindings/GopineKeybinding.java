@@ -1,7 +1,5 @@
 package net.gopine.util.keybindings;
 
-import net.gopine.events.EventSubscriber;
-
 public abstract class GopineKeybinding {
 
     public String name;
@@ -12,6 +10,11 @@ public abstract class GopineKeybinding {
         this.keyCode = keyCode;
     }
 
+    /**
+     * The code performed on key clicked
+     * @author MatthewTGM| MatthewTGM#4058
+     * @since b1.0
+     */
     public void onClick() {
 
     }

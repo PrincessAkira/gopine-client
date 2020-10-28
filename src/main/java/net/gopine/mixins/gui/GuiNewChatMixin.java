@@ -42,8 +42,9 @@ public class GuiNewChatMixin {
     @Shadow public int getChatWidth() { return calculateChatboxWidth(this.mc.gameSettings.chatWidth); }
 
     /**
-     * @param p_146230_1_
-     * @author MatthewTGM | MatthewTGM#4058
+     * @param p_146230_1_ unsure
+     * @author MatthewTGM| MatthewTGM#4058
+     * @since b1.0
      */
     @Overwrite
     public void drawChat(int p_146230_1_)
@@ -103,7 +104,7 @@ public class GuiNewChatMixin {
                                 }
                                 String s = chatline.getChatComponent().getFormattedText();
                                 GlStateManager.enableBlend();
-                                this.mc.fontRendererObj.drawStringWithShadow(s, (float)i2, (float)(j2 - 8), 16777215 + (l1 << 24));
+                                this.mc.fontRendererObj.drawString(s, i2, (j2 - 8), 16777215 + (l1 << 24));
                                 GlStateManager.disableAlpha();
                                 GlStateManager.disableBlend();
                             }

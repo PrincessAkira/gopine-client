@@ -1,9 +1,11 @@
 package net.gopine.modules.impl;
 
+import net.gopine.GopineClient;
 import net.gopine.modules.Module;
 import net.gopine.modules.ModuleCategory;
 import net.gopine.modules.draggable.RenderedModule;
 import net.gopine.modules.draggable.ScreenPos;
+import org.json.simple.JSONObject;
 import org.lwjgl.input.Mouse;
 
 import java.util.ArrayList;

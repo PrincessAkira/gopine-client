@@ -10,6 +10,7 @@
     "entity.EntityPlayerMixin",
     "entity.RenderTNTPrimedMixin",
     "entity.EntityLivingBaseMixin",
+    "entity.EntityMixin",
     "gui.GuiMainMenuMixin",
     "gui.GuiMixin",
     "gui.GuiNewChatMixin",

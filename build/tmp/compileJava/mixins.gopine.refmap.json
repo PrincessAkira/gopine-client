@@ -4,7 +4,6 @@
       "doRender": "Lnet/minecraft/client/renderer/entity/RenderTNTPrimed;func_76986_a(Lnet/minecraft/entity/item/EntityTNTPrimed;DDDFF)V"
     },
     "net/gopine/mixins/entity/EntityLivingBaseMixin": {
-      "performHurtAnimation": "Lnet/minecraft/entity/EntityLivingBase;func_70057_ab()V",
       "onDeath": "Lnet/minecraft/entity/EntityLivingBase;func_70645_a(Lnet/minecraft/util/DamageSource;)V"
     },
     "net/gopine/mixins/networking/NetHandlerPlayClientMixin": {
@@ -38,7 +37,6 @@
         "doRender": "Lbkf;a(Lvj;DDDFF)V"
       },
       "net/gopine/mixins/entity/EntityLivingBaseMixin": {
-        "performHurtAnimation": "Lpr;ar()V",
         "onDeath": "Lpr;a(Low;)V"
       },
       "net/gopine/mixins/networking/NetHandlerPlayClientMixin": {
@@ -71,7 +69,6 @@
         "doRender": "Lnet/minecraft/client/renderer/entity/RenderTNTPrimed;func_76986_a(Lnet/minecraft/entity/item/EntityTNTPrimed;DDDFF)V"
       },
       "net/gopine/mixins/entity/EntityLivingBaseMixin": {
-        "performHurtAnimation": "Lnet/minecraft/entity/EntityLivingBase;func_70057_ab()V",
         "onDeath": "Lnet/minecraft/entity/EntityLivingBase;func_70645_a(Lnet/minecraft/util/DamageSource;)V"
       },
       "net/gopine/mixins/networking/NetHandlerPlayClientMixin": {

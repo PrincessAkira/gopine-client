@@ -6,6 +6,11 @@ import net.minecraft.client.gui.*;
 
 public class Utils {
 
+    /**
+     * Javadoc unused
+     * @param discordRPC instance of {@link GopineRPC}
+     * @param currentScreen current guiscreen
+     */
     public void checkForDiscordRPCUpdateAvailability(GopineRPC discordRPC, GuiScreen currentScreen) {
         Minecraft mc = Minecraft.getMinecraft();
         if(currentScreen instanceof GuiMainMenu)
@@ -29,7 +34,9 @@ public class Utils {
             discordRPC.setPresence("Playing on " + mc.getCurrentServerData().serverIP, "Ingame", "gopinelarge");
 
     }
-
+    /**
+     * Javadoc unused
+     */
     public void openModuleHUDConfig() {
         Minecraft.getMinecraft().displayGuiScreen(new GuiGopineHUDEditor());
     }
