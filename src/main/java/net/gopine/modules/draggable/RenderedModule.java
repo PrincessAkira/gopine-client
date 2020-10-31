@@ -1,11 +1,10 @@
 package net.gopine.modules.draggable;
 
 import net.gopine.GopineClient;
-import net.gopine.assets.gui.GuiGopineHUDEditor;
+import net.gopine.gui.GuiGopineHUDEditor;
 import net.gopine.events.impl.client.modules.EventModuleDisable;
 import net.gopine.events.impl.client.modules.EventModuleEnable;
 import net.gopine.events.impl.client.modules.EventModuleToggle;
-import net.gopine.modules.Module;
 import net.gopine.modules.ModuleCategory;
 import net.gopine.util.Logger;
 import net.minecraft.client.Minecraft;
@@ -68,7 +67,7 @@ public class RenderedModule {
         } else if(this.pos == null) {
             this.pos = new ScreenPos(0, 0);
             final JSONObject obj = (JSONObject) GopineClient.getInstance().getFileHandler().readModuleData(this.name).get("pos");
-            this.pos.setExactPos(Integer.parseInt(String.valueOf(obj.get("x"))), Integer.parseInt(String.valueOf(obj.get("y"))));
+            this.pos.setExactPos(Math.round((long) obj.get("x")), Math.round((long) obj.get("y")));
         }
         if(this.approximateHeight == 0) approximateHeight = 50;
         if(this.approximateWidth == 0) approximateWidth = 50;

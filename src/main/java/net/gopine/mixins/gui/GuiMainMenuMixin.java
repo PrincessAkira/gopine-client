@@ -1,6 +1,7 @@
 package net.gopine.mixins.gui;
 
 import net.gopine.assets.gui.GopineButtonRound;
+import net.gopine.modules.impl.SpotifyDisplayModule;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.GlStateManager;
@@ -12,6 +13,9 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.awt.*;
 
@@ -44,7 +48,7 @@ public class GuiMainMenuMixin extends GuiScreen {
 
     /**
      * Fixed the {@link GuiMainMenu} initGui method.
-     * @author MatthewTGM | MatthewTGM#4058
+     * @author MatthewTGM
      * @since b1.0
      */
     @Overwrite
@@ -77,7 +81,7 @@ public class GuiMainMenuMixin extends GuiScreen {
      * Adds all custom buttons to the GUI.
      * @param p_73969_1_ unsure
      * @param p_73969_2_ unsure
-     * @author MatthewTGM | MatthewTGM#4058
+     * @author MatthewTGM
      * @since b1.0
      */
     public void addAllButtons(int p_73969_1_, int p_73969_2_) {
@@ -90,7 +94,7 @@ public class GuiMainMenuMixin extends GuiScreen {
 
     /**
      * Used to draw and render the custom background on the main menu.
-     * @author MatthewTGM | MatthewTGM#4058
+     * @author MatthewTGM
      * @since b1.0
      */
     private void renderCustomStaticBackground(ResourceLocation resourceLocation, float pt) {
@@ -118,7 +122,7 @@ public class GuiMainMenuMixin extends GuiScreen {
      * @param mouseX the X position of the mouse
      * @param mouseY the Y position of the mouse0
      * @param partialTicks the partialTicks
-     * @author MatthewTGM | MatthewTGM#4058
+     * @author MatthewTGM
      * @since b1.0
      */
     @Overwrite

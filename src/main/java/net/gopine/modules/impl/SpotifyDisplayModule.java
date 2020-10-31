@@ -9,7 +9,6 @@ import com.wrapper.spotify.model_objects.miscellaneous.CurrentlyPlayingContext;
 import com.wrapper.spotify.model_objects.specification.ArtistSimplified;
 import com.wrapper.spotify.model_objects.specification.Track;
 import com.wrapper.spotify.requests.authorization.authorization_code.AuthorizationCodeUriRequest;
-import net.gopine.assets.gui.GopineButtonRound;
 import net.gopine.events.EventSubscriber;
 import net.gopine.events.impl.gui.EventGuiSwitch;
 import net.gopine.events.manager.EventManager;
@@ -19,20 +18,15 @@ import net.gopine.modules.draggable.ScreenPos;
 import net.gopine.util.Logger;
 import net.gopine.util.RenderUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiMainMenu;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.util.ResourceLocation;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.Field;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -72,7 +66,7 @@ public class SpotifyDisplayModule extends RenderedModule {
 
     @Override
     public void onModuleEnable() {
-        Logger.ModLogger.warn("[Gopine Spotify] Starting...");
+        Logger.CustomLogger.info("Spotify", "Starting...");
         EventManager.register(this);
         try {
             HttpServer server = HttpServer.create(new InetSocketAddress(42069), 0);
@@ -86,7 +80,7 @@ public class SpotifyDisplayModule extends RenderedModule {
                         }
                     });
             server.start();
-            Logger.ModLogger.warn("[Gopine Spotify] Opening Spotify authenticator in your favourite browser!");
+            Logger.CustomLogger.info("Spotify", "Opening Spotify authenticator in your favourite browser!");
             Desktop.getDesktop().browse(authorizationCodeUriRequest.execute());
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,16 +93,17 @@ public class SpotifyDisplayModule extends RenderedModule {
 
     @Override
     public void onRender(ScreenPos pos) {
-        new RenderUtils().drawRect(pos.getExactPosX(), pos.getExactPosY(), pos.getExactPosX() + this.approximateWidth, pos.getExactPosY() + this.approximateHeight, new Color(70, 70, 70, 145).getRGB());
-        if (coverImage != null && coverImageBuffer != null) {
-            Minecraft.getMinecraft().getTextureManager().bindTexture(coverImage);
-            drawScaledCustomSizeModalRect(pos.getExactPosX(), pos.getExactPosY(), 0, 0, 64, 64, 64, 64, 64, 64);
-        }
         if (percentage != null) {
+            new RenderUtils().drawRect(pos.getExactPosX(), pos.getExactPosY(), pos.getExactPosX() + this.approximateWidth, pos.getExactPosY() + this.approximateHeight, new Color(70, 70, 70, 145).getRGB());
+            new RenderUtils().drawHollowRect(pos.getExactPosX(), pos.getExactPosY(), this.approximateWidth, this.approximateHeight, new Color(90, 90, 90, 170).getRGB());
             int max = 150;
             int wayThroughPixels = (int) (max * ((double) percentage / 100));
             new RenderUtils().drawRoundedRect(pos.getExactPosX() + 110, pos.getExactPosY() + 58, max, 4, 2, darkGrey);
             new RenderUtils().drawRoundedRect(pos.getExactPosX() + 110, pos.getExactPosY() + 58, wayThroughPixels, 4, 2, lightGrey);
+        }
+        if (coverImage != null && coverImageBuffer != null) {
+            Minecraft.getMinecraft().getTextureManager().bindTexture(coverImage);
+            drawScaledCustomSizeModalRect(pos.getExactPosX(), pos.getExactPosY(), 0, 0, 64, 64, 64, 64, 64, 64);
         }
         if (millisThrough != null) {
             font.drawString(formatMillis(millisThrough), pos.getExactPosX() + 82, pos.getExactPosY() + 56, lightGrey.getRGB());
@@ -120,7 +115,7 @@ public class SpotifyDisplayModule extends RenderedModule {
             }
         }
         if (currentlyPlaying != null) {
-            font.drawString(currentlyPlaying.getName(), pos.getExactPosX() + 75, pos.getExactPosY() + 10, -1);
+            font.drawString("Song Name: " + currentlyPlaying.getName(), pos.getExactPosX() + 75, pos.getExactPosY() + 10, -1);
             String authorList;
             if (currentlyPlaying.getArtists().length == 1) {
                 authorList = currentlyPlaying.getArtists()[0].getName();
@@ -144,7 +139,11 @@ public class SpotifyDisplayModule extends RenderedModule {
                 }
                 authorList = authors.toString();
             }
-            font.drawString(authorList, pos.getExactPosX() + 75, pos.getExactPosY() + 20, -1);
+            if(currentlyPlaying.getArtists().length == 1) {
+                font.drawString("Author: " + authorList, pos.getExactPosX() + 75, pos.getExactPosY() + 20, -1);
+            } else {
+                font.drawString("Authors: " + authorList, pos.getExactPosX() + 75, pos.getExactPosY() + 20, -1);
+            }
         }
         super.onRender(pos);
     }
@@ -171,7 +170,7 @@ public class SpotifyDisplayModule extends RenderedModule {
             }
         }
         if (currentlyPlaying != null) {
-            font.drawString(currentlyPlaying.getName(), pos.getExactPosX() + 75, pos.getExactPosY() + 10, -1);
+            font.drawString("Song Name: " + currentlyPlaying.getName(), pos.getExactPosX() + 75, pos.getExactPosY() + 10, -1);
             String authorList;
             if (currentlyPlaying.getArtists().length == 1) {
                 authorList = currentlyPlaying.getArtists()[0].getName();
@@ -195,7 +194,11 @@ public class SpotifyDisplayModule extends RenderedModule {
                 }
                 authorList = authors.toString();
             }
-            font.drawString(authorList, pos.getExactPosX() + 75, pos.getExactPosY() + 20, -1);
+            if(currentlyPlaying.getArtists().length == 1) {
+                font.drawString("Author: " + authorList, pos.getExactPosX() + 75, pos.getExactPosY() + 20, -1);
+            } else {
+                font.drawString("Authors: " + authorList, pos.getExactPosX() + 75, pos.getExactPosY() + 20, -1);
+            }
         }
         super.onDummyRender(pos);
     }
@@ -242,9 +245,8 @@ public class SpotifyDisplayModule extends RenderedModule {
 
             ready = true;
 
-            Logger.ModLogger.warn(
-                    "[Gopine Spotify] Logged in as: "
-                            + api.getCurrentUsersProfile().build().execute().getDisplayName());
+            Logger.CustomLogger.info(
+                    "Spotify", "Logged in as: " + api.getCurrentUsersProfile().build().execute().getDisplayName());
 
             hasPremium =
                     api.getCurrentUsersProfile().build().execute().getProduct().equals(ProductType.PREMIUM);
@@ -274,18 +276,6 @@ public class SpotifyDisplayModule extends RenderedModule {
 
     @EventSubscriber
     public void onGuiSwitch(EventGuiSwitch event) {
-        if (api.getAccessToken() == null && event.screen instanceof GuiMainMenu) {
-            try {
-                // TODO: Fix or get someone to Mixin it.
-                Field buttonListField = GuiScreen.class.getDeclaredField("buttonList");
-                buttonListField.setAccessible(true);
-                ArrayList<GopineButtonRound> buttonList = (ArrayList<GopineButtonRound>) buttonListField.get(event.screen);
-                buttonList.add(new GopineButtonRound(69, 10, 10, "Setup Spotify", 6, new Color(255, 255, 255, 133), new Color(199, 226, 84, 133), new Color(0, 100, 50), new Color(0, 100, 50)));
-                buttonListField.set(event.screen, buttonList);
-            } catch (NoSuchFieldException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
         if (ready) {
             update();
         }

@@ -7,6 +7,7 @@
       "onDeath": "Lnet/minecraft/entity/EntityLivingBase;func_70645_a(Lnet/minecraft/util/DamageSource;)V"
     },
     "net/gopine/mixins/networking/NetHandlerPlayClientMixin": {
+      "Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V": "Lnet/minecraft/network/PacketThreadUtil;func_180031_a(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V",
       "handleChat": "Lnet/minecraft/client/network/NetHandlerPlayClient;func_147251_a(Lnet/minecraft/network/play/server/S02PacketChat;)V"
     },
     "net/gopine/mixins/renderer/EntityRendererMixin": {
@@ -19,11 +20,13 @@
       "attackTargetEntityWithCurrentItem": "Lnet/minecraft/entity/player/EntityPlayer;func_71059_n(Lnet/minecraft/entity/Entity;)V"
     },
     "net/gopine/mixins/client/MinecraftMixin": {
+      "setDimensionAndSpawnPlayer": "Lnet/minecraft/client/Minecraft;func_71354_a(I)V",
       "dispatchKeypresses": "Lnet/minecraft/client/Minecraft;func_152348_aa()V",
       "launchIntegratedServer": "Lnet/minecraft/client/Minecraft;func_71371_a(Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/world/WorldSettings;)V",
       "createDisplay": "Lnet/minecraft/client/Minecraft;func_175609_am()V",
       "startGame": "Lnet/minecraft/client/Minecraft;func_71384_a()V",
       "runTick": "Lnet/minecraft/client/Minecraft;func_71407_l()V",
+      "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V": "Lnet/minecraft/client/Minecraft;func_71353_a(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V",
       "shutdownMinecraftApplet": "Lnet/minecraft/client/Minecraft;func_71405_e()V",
       "clickMouse": "Lnet/minecraft/client/Minecraft;func_147116_af()V",
       "rightClickMouse": "Lnet/minecraft/client/Minecraft;func_147121_ag()V",
@@ -40,6 +43,7 @@
         "onDeath": "Lpr;a(Low;)V"
       },
       "net/gopine/mixins/networking/NetHandlerPlayClientMixin": {
+        "Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V": "Lfh;a(Lff;Lep;Lod;)V",
         "handleChat": "Lbcy;a(Lfy;)V"
       },
       "net/gopine/mixins/renderer/EntityRendererMixin": {
@@ -52,11 +56,13 @@
         "attackTargetEntityWithCurrentItem": "Lwn;f(Lpk;)V"
       },
       "net/gopine/mixins/client/MinecraftMixin": {
+        "setDimensionAndSpawnPlayer": "Lave;a(I)V",
         "dispatchKeypresses": "Lave;Z()V",
         "launchIntegratedServer": "Lave;a(Ljava/lang/String;Ljava/lang/String;Ladp;)V",
         "createDisplay": "Lave;ap()V",
         "startGame": "Lave;am()V",
         "runTick": "Lave;s()V",
+        "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V": "Lave;a(Lbdb;Ljava/lang/String;)V",
         "shutdownMinecraftApplet": "Lave;g()V",
         "clickMouse": "Lave;aw()V",
         "rightClickMouse": "Lave;ax()V",
@@ -72,6 +78,7 @@
         "onDeath": "Lnet/minecraft/entity/EntityLivingBase;func_70645_a(Lnet/minecraft/util/DamageSource;)V"
       },
       "net/gopine/mixins/networking/NetHandlerPlayClientMixin": {
+        "Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V": "Lnet/minecraft/network/PacketThreadUtil;func_180031_a(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V",
         "handleChat": "Lnet/minecraft/client/network/NetHandlerPlayClient;func_147251_a(Lnet/minecraft/network/play/server/S02PacketChat;)V"
       },
       "net/gopine/mixins/renderer/EntityRendererMixin": {
@@ -84,11 +91,13 @@
         "attackTargetEntityWithCurrentItem": "Lnet/minecraft/entity/player/EntityPlayer;func_71059_n(Lnet/minecraft/entity/Entity;)V"
       },
       "net/gopine/mixins/client/MinecraftMixin": {
+        "setDimensionAndSpawnPlayer": "Lnet/minecraft/client/Minecraft;func_71354_a(I)V",
         "dispatchKeypresses": "Lnet/minecraft/client/Minecraft;func_152348_aa()V",
         "launchIntegratedServer": "Lnet/minecraft/client/Minecraft;func_71371_a(Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/world/WorldSettings;)V",
         "createDisplay": "Lnet/minecraft/client/Minecraft;func_175609_am()V",
         "startGame": "Lnet/minecraft/client/Minecraft;func_71384_a()V",
         "runTick": "Lnet/minecraft/client/Minecraft;func_71407_l()V",
+        "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V": "Lnet/minecraft/client/Minecraft;func_71353_a(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V",
         "shutdownMinecraftApplet": "Lnet/minecraft/client/Minecraft;func_71405_e()V",
         "clickMouse": "Lnet/minecraft/client/Minecraft;func_147116_af()V",
         "rightClickMouse": "Lnet/minecraft/client/Minecraft;func_147121_ag()V",

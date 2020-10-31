@@ -1,8 +1,14 @@
 package net.gopine.util;
 
-import net.gopine.assets.gui.GuiGopineHUDEditor;
+import net.gopine.gui.GuiGopineHUDEditor;
+import net.gopine.modules.impl.togglesprint.GopineSprint;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.*;
+
+import java.lang.reflect.Field;
+
+import static net.minecraft.client.Minecraft.getMinecraft;
 
 public class Utils {
 

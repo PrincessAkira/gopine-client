@@ -9,9 +9,13 @@ import net.gopine.events.impl.player.input.EventKeyboardKeyReleased;
 import net.gopine.events.impl.player.input.EventMouseLeftClick;
 import net.gopine.events.impl.player.input.EventMouseRightClick;
 import net.gopine.events.impl.world.EventWorldJoin;
+import net.gopine.modules.impl.togglesprint.GopineSprint;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.resources.DefaultResourcePack;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.world.WorldSettings;
@@ -43,6 +47,10 @@ import java.util.Arrays;
 public class MinecraftMixin {
 
     @Shadow @Final private DefaultResourcePack mcDefaultResourcePack;
+
+    @Shadow public EntityPlayerSP thePlayer;
+
+    @Shadow public GameSettings gameSettings;
 
     /**
      * Calls the {@link GopineClient} preInit method on game start.
@@ -109,7 +117,7 @@ public class MinecraftMixin {
     /**
      * Calls the {@link GopineClient} init method on game start.
      * @param ci unused
-     * @author MatthewTGM | MatthewTGM#4058
+     * @author MatthewTGM
      * @since b0.1
      */
     @Inject(method = "startGame", at = @At("RETURN"))
@@ -120,7 +128,7 @@ public class MinecraftMixin {
     /**
      * Calls the {@link GopineClient} shutdown method on game close.
      * @param ci unused
-     * @author MatthewTGM | MatthewTGM#4058
+     * @author MatthewTGM
      * @since b0.1
      */
     @Inject(method = "shutdownMinecraftApplet", at = @At("HEAD"))
@@ -221,6 +229,20 @@ public class MinecraftMixin {
     @Inject(method = "launchIntegratedServer", at = @At("HEAD"))
     private void launchIntegratedServer(String folderName, String worldName, WorldSettings worldSettingsIn, CallbackInfo callbackInfo) {
         new EventWorldJoin(folderName, worldName).call();
+    }
+
+    @Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V", at = @At("RETURN"))
+    public void loadWorld(WorldClient worldClientIn, String loadingMessage, CallbackInfo callbackInfo) {
+        if(Minecraft.getMinecraft().thePlayer != null) {
+            Minecraft.getMinecraft().thePlayer.movementInput = new GopineSprint();
+        }
+    }
+
+    @Inject(method = "setDimensionAndSpawnPlayer", at = @At("RETURN"))
+    public void setDimensionAndSpawnPlayer(int dimension, CallbackInfo callbackInfo) {
+        if(Minecraft.getMinecraft().thePlayer != null) {
+            Minecraft.getMinecraft().thePlayer.movementInput = new GopineSprint();
+        }
     }
 
 }

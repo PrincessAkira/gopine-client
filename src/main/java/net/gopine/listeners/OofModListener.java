@@ -2,6 +2,7 @@ package net.gopine.listeners;
 
 import net.gopine.events.EventSubscriber;
 import net.gopine.events.impl.client.EventChatReceived;
+import net.gopine.events.impl.client.EventClientChatReceived;
 import net.gopine.modules.impl.OofModule;
 import net.gopine.util.Logger;
 import net.minecraft.client.Minecraft;
@@ -11,6 +12,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,11 +27,11 @@ public class OofModListener {
     }
 
     @EventSubscriber
-    public void onDeathMessageReceived(EventChatReceived e) {
+    public void onDeathMessageReceived(EventClientChatReceived e) {
         if (this.nameToCheck.isEmpty()) {
             this.nameToCheck = this.mc.thePlayer.getName();
         }
-        final String line = e.chatComponent.getUnformattedText();
+        final String line = e.message.getUnformattedText();
         if (!OofModule.shouldPlay || line.split(" ").length == 0) {
             return;
         }
@@ -43,22 +45,30 @@ public class OofModListener {
         if (usernameMatcher.matches() && killMessageMatcher.find()) {
             final String killed = killMessageMatcher.group(1);
             if (!killed.equals(this.nameToCheck)) {
-                this.playSound(line);
+                try {
+                    this.playSound();
+                } catch(Exception e1) {
+                    e1.printStackTrace();
+                }
             }
         }
     }
 
-    private void playSound(String msg) /*throws Exception*/ {
+    private void playSound() throws Exception {
         /*if (!this.mod.getSoundSetting().exists()) {
             return;
         }*/
-        /*final AudioInputStream audioIn = AudioSystem.getAudioInputStream(this.mod.getSoundSetting().toURI().toURL());
+        final File file1 = new File("oof.wav");
+        Logger.CustomLogger.info("OofMod #1", file1);
+        Logger.CustomLogger.info("OofMod #2", file1.toURI().toURL());
+        Logger.CustomLogger.info("OofMod #3", file1.toString());
+        final AudioInputStream audioIn = AudioSystem.getAudioInputStream(/*OofModule.getSoundSetting().toURI().toURL()*/file1.toURI().toURL());
         final Clip clip = AudioSystem.getClip();
         clip.open(audioIn);
         final FloatControl gainControl = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue(this.mod.getVolume() - 30.0f);
-        clip.start();*/
-        this.mc.thePlayer.playSound("gopineclient:oof", 30.0f, 1.0f);
+        gainControl.setValue(OofModule.getVolume() - 30.0f);
+        clip.start();
+        //this.mc.thePlayer.playSound("gopineclient:oof", 30.0f, 1.0f);
     }
 
 }

@@ -43,9 +43,11 @@ public class HttpsPost {
             assert http != null;
             http.setRequestMethod("POST");
             http.setDoOutput(true);
-            StringJoiner sj = new StringJoiner("&");
-            for(Map.Entry<String, String> entry : params.entrySet()) {
-                sj.add(URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + URLEncoder.encode(entry.getValue(), "UTF-8"));
+            if(params != null) {
+                StringJoiner sj = new StringJoiner("&");
+                for(Map.Entry<String, String> entry : params.entrySet()) {
+                    sj.add(URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + URLEncoder.encode(entry.getValue(), "UTF-8"));
+                }
             }
             byte[] out = JSONContent.getBytes(StandardCharsets.UTF_8);
             int length = out.length;
@@ -55,7 +57,10 @@ public class HttpsPost {
             try(OutputStream os = http.getOutputStream()) {
                 os.write(out);
             }
-            Logger.info("POST Request completed!");
+            if(http.getResponseMessage() != null) {
+                Logger.CustomLogger.info("HttpsPost", http.getResponseMessage());
+            }
+            Logger.CustomLogger.info("HttpsPost", "POST Request completed!");
         } catch(Exception e) {
             e.printStackTrace();
         }

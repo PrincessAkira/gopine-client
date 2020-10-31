@@ -42,6 +42,20 @@ public class Logger {
         for (Object out : data) System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] [Gopine Warn] " + out);
     }
 
+    public static class CustomLogger {
+
+        /**
+         * Logs the content to the console as a `warn` type.
+         * @param data the data being logged.
+         * @author MatthewTGM | MatthewTGM#4058
+         * @since b1.0
+         */
+        public static void info(String suffix, Object... data) {
+            for (Object out : data) System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] [Gopine " + suffix + "] " + out);
+        }
+
+    }
+
     public static class ModLogger {
 
         /**

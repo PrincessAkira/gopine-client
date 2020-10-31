@@ -36,18 +36,17 @@ public class RenderUtils {
         drawArc(x + cornerRadius, y + height - cornerRadius, cornerRadius, 90, 180, color);
     }
 
-    //TODO: FIX drawHollowRoundedRect MATH | ASK DANTERUS ABOUT IT MOST LIKELY - MatthewTGM
-
-    public void drawHollowRoundedRect(int x, int y, int width, int height, int cornerRadius, int thickness, Color color) {
-        this.drawHorizontalLine(x + cornerRadius, x + width - cornerRadius, y, color.getRGB()); // TOP LINE
-        this.drawHorizontalLine(x + cornerRadius, x + width - cornerRadius, y + height, color.getRGB()); // BOTTOM LINE
-        this.drawVerticalLine(x, y + cornerRadius, y + height - cornerRadius, color.getRGB()); // LEFT LINE
-        this.drawVerticalLine(x + width, y + cornerRadius, y + height - cornerRadius, color.getRGB()); // RIGHT LINE
-
-        //this.drawHollowArc(x + cornerRadius, y + cornerRadius, cornerRadius, 90, 180, thickness, color); // TOP LEFT ARC
-        //this.drawHollowArc(x + width - cornerRadius, y + cornerRadius, cornerRadius, 180, 270, thickness, color); // TOP RIGHT ARC
-        //this.drawHollowArc(x + width - cornerRadius, y + height - cornerRadius, cornerRadius, 270, 360, thickness, color); // BOTTOM LEFT ARC -> 270, 360
-        //this.drawHollowArc(x + cornerRadius, y + height - cornerRadius, cornerRadius, 0, 90, thickness, color); // BOTTOM RIGHT ARC -> 0, 90
+    public void drawHollowRoundedRect(int x, int y, int width, int height, double thickness, Color color) {
+        //double thickness = 1.2;
+        double radius = 4;
+        drawHollowArc(x, y, radius, -180, -90, thickness, color);
+        drawVerticalLine(x, y + 3, y + height - 4, color.getRGB());
+        drawHorizontalLine(x + 3, x + width - 5, y, color.getRGB());
+        drawHollowArc(x + width - 8, y, radius, -270, -180, thickness, color);
+        drawVerticalLine(x + width - 1, y + 3, y + height - 4, color.getRGB());
+        drawHorizontalLine(x + 4, x + width - 5, y + height - 1, color.getRGB());
+        drawHollowArc(x + width - 8, y + height - 8, radius, 0, 90, thickness, color);
+        drawHollowArc(x, y + height - 8, radius, -90, -0, thickness, color);
     }
 
     private void drawArc(int x, int y, int radius, int startAngle, int endAngle, Color color) {

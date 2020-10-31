@@ -1,20 +1,11 @@
 package net.gopine.modules;
 
 import net.gopine.GopineClient;
-import net.gopine.assets.gui.GuiGopineHUDEditor;
 import net.gopine.events.impl.client.modules.EventModuleDisable;
 import net.gopine.events.impl.client.modules.EventModuleEnable;
 import net.gopine.events.impl.client.modules.EventModuleToggle;
-import net.gopine.events.manager.EventManager;
-import net.gopine.modules.draggable.DraggableElement;
-import net.gopine.modules.draggable.RenderedModule;
-import net.gopine.modules.draggable.ScreenPos;
 import net.gopine.util.Logger;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Module {
 

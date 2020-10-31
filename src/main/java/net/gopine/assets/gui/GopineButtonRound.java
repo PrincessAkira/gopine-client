@@ -45,7 +45,7 @@ public class GopineButtonRound extends GuiButton {
                 c = this.hoverColor;
             }
             RenderUtils.getInstance().drawRoundedRect(this.xPosition, this.yPosition, this.width, this.height, this.cornerRadius, c);
-            //RenderUtils.getInstance().drawHollowRoundedRect(this.xPosition, this.yPosition, this.width, this.height, this.cornerRadius, 2, c);
+            RenderUtils.getInstance().drawHollowRoundedRect(this.xPosition, this.yPosition, this.width, this.height, 1, c);
             this.mouseDragged(mc, mouseX, mouseY);
 
             this.drawCenteredString(fontrenderer, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, j);

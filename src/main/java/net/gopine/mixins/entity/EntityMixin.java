@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.Mixin;
  * @author Yukii Kamouto | Azariel#0004
  * @since b0.1
  */
-
 @Mixin(Entity.class)
 public class EntityMixin {
 
@@ -28,7 +27,6 @@ public class EntityMixin {
      * @author Yukii Kamouto | Azariel#0004
      * @since b0.1
      */
-
     public Vec3 getLook(float partialTicks)
     {
         // System.out.println("MouseDelayFix Loaded");
@@ -43,37 +41,11 @@ public class EntityMixin {
             return this.getVectorForRotation(f, f1);
         }
     }
-
-
     /**
      * Stuff needed for MousedelayFix
      * @author Yukii Kamouto | Azariel#0004
      * @since b0.1
      */
-
-    // old Method
-
-/*  @Inject(method = "getLook", at = @At("RETURN"))
-  public void getLook(float partialTicks, CallbackInfoReturnable<Vec3> callbackInfoReturnable) {
-    if (partialTicks == 1.0F)
-    {
-      callbackInfoReturnable.setReturnValue(this.getVectorForRotation(this.rotationPitch, this.rotationYawHead));
-    }
-    else
-    {
-      float f = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * partialTicks;
-      float f1 = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * partialTicks;
-      callbackInfoReturnable.setReturnValue(this.getVectorForRotation(f, f1));
-    }
-  } */
-
-
-    /**
-     * Stuff needed for MousedelayFix
-     * @author Yukii Kamouto | Azariel#0004
-     * @since b0.1
-     */
-
     protected final Vec3 getVectorForRotation(float pitch, float yaw)
     {
         float f = MathHelper.cos(-yaw * 0.017453292F - (float)Math.PI);
