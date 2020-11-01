@@ -130,7 +130,7 @@ public class GopineClient {
         });
         MODULE_MANAGER.initModules();
         SETTING_MANAGER.initSettings();
-        SessionChanger.getInstance().setUser("matthewtgm120@gmail.com", "EpicGamer20019.");
+        SessionChanger.getInstance().setUser("EMAIL", "PASS");
         //this.postForNametagIcon("LOGIN");
         //this.sentDiscordWebhookPostForPlayerLogin("LOGIN");
         Logger.info("Finished Gopine Client INIT phase");
